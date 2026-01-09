@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-image: url(../public/background_img.png);
+  background-size: cover;
+  text-align: center;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+}
+
+.navbar img {
+  max-width: 100px;
+}
