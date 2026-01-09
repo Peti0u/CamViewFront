@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 body {
   background-image: url(../public/background_img.png);
   background-size: cover;
@@ -11,8 +10,40 @@ body {
   left: 50%;
   transform: translate(-50%);
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.navbar div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 80px;
+  background-color: #ededed20;
+  border-radius: 250px;
+  transition: 0.5s;
+}
+.navbar div:hover {
+  background-color: #ededed60;
+  transform: scale(1.05);
 }
 
 .navbar img {
-  max-width: 100px;
+  width: 40px;
+  height: 40px;
+}
+
+#add_nav {
+  width: 115px;
+  height: 92px;
+}
+
+#add_nav img {
+  width: 46px;
+  height: 46px;
 }
