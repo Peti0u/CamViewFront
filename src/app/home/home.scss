@@ -24,13 +24,16 @@ nav {
   border-radius: 250px;
 }
 
-nav div {
+nav a {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
-  height: 100px;
-  //   background-color: #ededed20;
+  height: 100%;
   border-radius: 250px;
-  transition: 0.5s;
+  transition: 0.3s;
+}
+
+#nav_dashboard {
+  background-color: #ededed60;
 }

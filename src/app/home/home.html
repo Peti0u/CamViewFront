@@ -1,7 +1,14 @@
 <section class="main_section">
   <nav>
-    <div><a routerLink="HomeDashboard">Tableau de Bord</a></div>
-    <div><a routerLink="HomeCameras">Caméras</a></div>
+    <a
+      id="nav_dashboard"
+      #nav_dashboard
+      routerLink="HomeDashboard"
+      (click)="RendActif(nav_dashboard)"
+    >
+      Tableau de Bord
+    </a>
+    <a #nav_cameras routerLink="HomeCameras" (click)="RendActif(nav_cameras)"> Caméras </a>
   </nav>
   <!-- <h1>Bienvenue sur CamView</h1> -->
   <router-outlet></router-outlet>
