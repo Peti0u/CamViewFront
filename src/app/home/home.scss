@@ -1,0 +1,36 @@
+.main_section {
+  border: 1px solid white;
+  border-radius: 25px;
+  position: fixed;
+  top: 4%;
+  width: 95%;
+  height: 75%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+nav {
+  font-size: 25px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 50%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ededed20;
+  border-radius: 250px;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100px;
+  //   background-color: #ededed20;
+  border-radius: 250px;
+  transition: 0.5s;
+}

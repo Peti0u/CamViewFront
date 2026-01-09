@@ -9,24 +9,13 @@ import { Add } from './add/add';
 import { Notifications } from './notifications/notifications';
 import { Settings } from './settings/settings';
 import { LogIn } from './log-in/log-in';
+import { Dashboard } from './home/dashboard/dashboard';
+import { Cameras } from './home/cameras/cameras';
 
 @NgModule({
-  declarations: [
-    App,
-    Home,
-    Files,
-    Add,
-    Notifications,
-    Settings,
-    LogIn
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-  ],
-  bootstrap: [App]
+  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [provideBrowserGlobalErrorListeners()],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}

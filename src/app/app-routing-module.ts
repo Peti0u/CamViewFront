@@ -6,6 +6,8 @@ import { Files } from './files/files';
 import { Add } from './add/add';
 import { Notifications } from './notifications/notifications';
 import { Settings } from './settings/settings';
+import { Dashboard } from './home/dashboard/dashboard';
+import { Cameras } from './home/cameras/cameras';
 
 const routes: Routes = [
   {
@@ -15,6 +17,10 @@ const routes: Routes = [
   {
     path: 'Home',
     component: Home,
+    children: [
+      { path: 'HomeDashBoard', component: Dashboard },
+      { path: 'HomeCameras', component: Cameras },
+    ],
   },
   {
     path: 'Files',
