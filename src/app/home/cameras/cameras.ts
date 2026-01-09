@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './cameras.scss',
 })
 export class Cameras {
-
+  onInit() {
+    console.log('Cameras component initialized');
+  }
 }

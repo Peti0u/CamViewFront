@@ -1,21 +1,25 @@
 <nav class="navbar">
   <!-- <a routerLink="">Se Connecter</a> -->
-  <a routerLink="Home">
-    <div><img src="/Nav/home_nav_img.png" alt="Image accueil navigation" /></div>
+  <a routerLink="Home" (click)="RendActif(nav_home)">
+    <div id="home_nav" #nav_home>
+      <img src="/Nav/home_nav_img.png" alt="Image accueil navigation" />
+    </div>
     <!-- une fois compilé, les chemins changent donc on part de la racine -->
   </a>
-  <a routerLink="Files"
-    ><div><img src="/Nav/files_nav_img.png" alt="Image documents navigation" /></div
+  <a routerLink="Files" (click)="RendActif(nav_files)"
+    ><div #nav_files><img src="/Nav/files_nav_img.png" alt="Image documents navigation" /></div
   ></a>
-  <a routerLink="Add"
-    ><div id="add_nav">
+  <a routerLink="Add" (click)="RendActif(add_nav)"
+    ><div id="add_nav" #add_nav>
       <img src="/Nav/add_nav_img.png" alt="Image ajouter caméra navigation" /></div
   ></a>
-  <a routerLink="Notifications"
-    ><div><img src="/Nav/notifications_nav_img.png" alt="Image notifications navigation" /></div
+  <a routerLink="Notifications" (click)="RendActif(nav_notifications)"
+    ><div #nav_notifications>
+      <img src="/Nav/notifications_nav_img.png" alt="Image notifications navigation" /></div
   ></a>
-  <a routerLink="Settings"
-    ><div><img src="/Nav/settings_nav_img.png" alt="Image paramètres navigation" /></div
+  <a routerLink="Settings" (click)="RendActif(nav_settings)"
+    ><div #nav_settings>
+      <img src="/Nav/settings_nav_img.png" alt="Image paramètres navigation" /></div
   ></a>
 </nav>
 

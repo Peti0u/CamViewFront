@@ -9,6 +9,9 @@ body {
   font-family: Poppins;
   text-align: center;
   margin: 0 auto;
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
 }
 
 a {
@@ -16,48 +19,20 @@ a {
   color: #ededed;
 }
 
-.navbar {
-  position: fixed;
-  bottom: 5%;
-  left: 50%;
-  transform: translate(-50%);
-  width: 95%;
-  height: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 20px;
-  border: 1px solid white;
-}
-
-.navbar div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 80px;
-  background-color: #ededed20;
-  border-radius: 250px;
-  margin-bottom: 10px;
-  transition: 0.5s;
-}
-.navbar div:hover {
+button {
   background-color: #ededed60;
-  transform: scale(1.05);
+  border: none;
+  border-radius: 250px;
+  font-family: Poppins;
+  color: #ededed;
+  font-size: 20px;
+  width: auto;
+  height: auto;
+  padding: 15px 50px;
+  margin-top: 5%;
+  transition: 0.3s;
 }
-
-.navbar img {
-  width: 40px;
-  height: 40px;
-}
-
-#add_nav {
-  width: 115px;
-  height: 92px;
-}
-
-#add_nav img {
-  width: 46px;
-  height: 46px;
+button:hover {
+  background-color: #ededed90;
+  cursor: pointer;
 }
