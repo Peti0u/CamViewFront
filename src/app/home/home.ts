@@ -9,17 +9,12 @@ import { Router } from '@angular/router';
 })
 export class Home {
   active_bar: HTMLElement | null = null; //on definit un elmt actif (dans la nav)
-  @ViewChild('nav_dashboard') navHomeRef!: ElementRef; //On recupere le premier elmt actif (home)
+  @ViewChild('top_navbar') navHomeRef!: ElementRef; // On recupere le premier elmt actif (home)
 
-  ngAfterViewInit() {
-    this.active_bar = this.navHomeRef.nativeElement; //On l'assigne après l'initialisation
-  }
-
-  RendActif(div: HTMLElement) {
-    if (this.active_bar != null) {
-      this.active_bar.style.backgroundColor = 'transparent';
-    }
-    this.active_bar = div;
-    div.style.backgroundColor = '#ededed60';
+  isNowActive(element: HTMLElement) {
+    this.navHomeRef.nativeElement
+      .querySelectorAll('a')
+      .forEach((el: HTMLElement) => el.setAttribute('data-variant', ''));
+    element.setAttribute('data-variant', 'active');
   }
 }

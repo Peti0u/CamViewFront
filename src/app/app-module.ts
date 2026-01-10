@@ -11,9 +11,10 @@ import { Settings } from './settings/settings';
 import { LogIn } from './log-in/log-in';
 import { Dashboard } from './home/dashboard/dashboard';
 import { Cameras } from './home/cameras/cameras';
+import { Navigation } from './navigation/navigation';
 
 @NgModule({
-  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras],
+  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras, Navigation],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
