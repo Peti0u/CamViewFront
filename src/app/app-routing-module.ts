@@ -10,33 +10,33 @@ import { Dashboard } from './home/dashboard/dashboard';
 import { Cameras } from './home/cameras/cameras';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: LogIn,
+  // },
   {
     path: '',
-    component: LogIn,
-  },
-  {
-    path: 'Home',
     component: Home,
     children: [
       { path: '', component: Dashboard },
-      { path: 'HomeDashboard', component: Dashboard },
-      { path: 'HomeCameras', component: Cameras },
+      { path: 'dashboard', component: Dashboard },
+      { path: 'cameras', component: Cameras },
     ],
   },
   {
-    path: 'Files',
+    path: 'files',
     component: Files,
   },
   {
-    path: 'Add',
+    path: 'add',
     component: Add,
   },
   {
-    path: 'Notifications',
+    path: 'notifications',
     component: Notifications,
   },
   {
-    path: 'Settings',
+    path: 'settings',
     component: Settings,
   },
 ];

@@ -1,4 +1,4 @@
-.bottom_navbar {
+.navbar {
   position: fixed;
   bottom: 5%;
   left: 50%;
@@ -13,7 +13,7 @@
   border: 1px solid white;
 }
 
-.bottom_navbar div {
+.navbar div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,30 +24,27 @@
   margin-bottom: 10px;
   transition: 0.5s;
 }
-.bottom_navbar div:hover {
+.navbar div:hover {
   background-color: #ededed60;
   transform: scale(1.05);
 }
 
-.bottom_navbar img {
+.navbar img {
   width: 40px;
   height: 40px;
 }
 
-#bottom_add_nav {
+#add_nav {
   width: 115px;
   height: 92px;
 }
 
-#bottom_add_nav img {
+#add_nav img {
   width: 46px;
   height: 46px;
 }
 
-.bottom_navbar [data-variant='active'] {
+#home_nav {
   background-color: #ededed60;
   transform: scale(1.05);
-}
-[data-variant] {
-  transition: background-color 0.2s ease, transform 0.2s ease;
 }

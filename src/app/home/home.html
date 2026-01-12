@@ -1,17 +1,14 @@
 <section class="main_section">
-  <nav class="top_navbar" #top_navbar>
+  <nav>
     <a
-      class="nav-item"
+      id="nav_dashboard"
       #nav_dashboard
       routerLink="HomeDashboard"
-      (click)="isNowActive(nav_dashboard)"
-      data-variant="active"
+      (click)="setActive(nav_dashboard)"
     >
       Tableau de Bord
     </a>
-    <a class="nav-item" #nav_cameras routerLink="HomeCameras" (click)="isNowActive(nav_cameras)">
-      Caméras
-    </a>
+    <a #nav_cameras routerLink="HomeCameras" (click)="setActive(nav_cameras)"> Caméras </a>
   </nav>
   <!-- <h1>Bienvenue sur CamView</h1> -->
   <router-outlet></router-outlet>

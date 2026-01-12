@@ -9,7 +9,7 @@
   transform: translate(-50%);
 }
 
-.top_navbar {
+nav {
   font-size: 25px;
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@
   border-radius: 250px;
 }
 
-.top_navbar a {
+nav a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,11 +36,4 @@
 
 #nav_dashboard {
   background-color: #ededed60;
-}
-.top_navbar [data-variant='active'] {
-  background-color: #ededed60;
-  transform: scale(1.05);
-}
-[data-variant] {
-  transition: background-color 0.2s ease, transform 0.2s ease;
 }
