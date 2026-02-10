@@ -12,9 +12,10 @@ import { LogIn } from './log-in/log-in';
 import { Dashboard } from './home/dashboard/dashboard';
 import { Cameras } from './home/cameras/cameras';
 import { Navigation } from './navigation/navigation';
+import { SignIn } from './sign-in/sign-in';
 
 @NgModule({
-  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras, Navigation],
+  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras, Navigation, SignIn],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
