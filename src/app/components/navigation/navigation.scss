@@ -24,9 +24,11 @@
   margin-bottom: 10px;
   transition: 0.5s;
 }
-.navbar div:hover {
+.navbar a:hover div {
   background-color: #ededed60;
   transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(237, 237, 237, 0.2);
 }
 
 .navbar img {

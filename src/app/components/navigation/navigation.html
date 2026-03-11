@@ -1,10 +1,9 @@
 <nav class="navbar">
   <!-- <a routerLink="">Se Connecter</a> -->
-  <a routerLink="home" (click)="setActive(nav_home)">
+  <a routerLink="dashboard" (click)="setActive(nav_home)">
     <div id="home_nav" #nav_home>
       <img src="/Nav/home_nav_img.png" alt="Image accueil navigation" />
     </div>
-    <!-- une fois compilé, les chemins changent donc on part de la racine -->
   </a>
   <a routerLink="files" (click)="setActive(nav_files)"
     ><div #nav_files><img src="/Nav/files_nav_img.png" alt="Image documents navigation" /></div

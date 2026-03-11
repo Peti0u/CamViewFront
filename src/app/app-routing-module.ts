@@ -1,25 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LogIn } from './log-in/log-in';
-import { Home } from './home/home';
-import { Files } from './files/files';
-import { Add } from './add/add';
-import { Notifications } from './notifications/notifications';
-import { Settings } from './settings/settings';
-import { Dashboard } from './home/dashboard/dashboard';
-import { Cameras } from './home/cameras/cameras';
-import { SignIn } from './sign-in/sign-in';
+import { AuthGuard } from './auth/auth.guard';
+
+import { LogIn } from './components/log-in/log-in';
+import { SignInComponent } from './components/sign-in/sign-in';
+import { Home } from './components/home/home';
+import { Files } from './components/files/files';
+import { Add } from './components/add/add';
+import { Notifications } from './components/notifications/notifications';
+import { Settings } from './components/settings/settings';
+import { Dashboard } from './components/home/dashboard/dashboard';
+import { Cameras } from './components/home/cameras/cameras';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: LogIn,
-  // },
+  // Routes publiques
+  {
+    path: 'login',
+    component: LogIn,
+  },
+  {
+    path: 'signin',
+    component: SignInComponent,
+  },
+
+  // Routes protégées
   {
     path: '',
     component: Home,
+    canActivate: [AuthGuard], // Protège le layout principal et ses enfants
     children: [
-      { path: 'home', component: Dashboard },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirection par défaut
       { path: 'dashboard', component: Dashboard },
       { path: 'cameras', component: Cameras },
     ],
@@ -27,26 +37,22 @@ const routes: Routes = [
   {
     path: 'files',
     component: Files,
+    canActivate: [AuthGuard],
   },
   {
     path: 'add',
     component: Add,
+    canActivate: [AuthGuard],
   },
   {
     path: 'notifications',
     component: Notifications,
+    canActivate: [AuthGuard],
   },
   {
     path: 'settings',
     component: Settings,
-  },
-  {
-    path: 'login',
-    component: LogIn,
-  },
-  {
-    path: 'signin',
-    component: SignIn,
+    canActivate: [AuthGuard],
   },
 ];
 

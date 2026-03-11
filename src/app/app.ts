@@ -1,4 +1,5 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,5 @@ import { Component, ElementRef, signal, ViewChild } from '@angular/core';
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('CamView');
+  constructor(public authService: AuthService) {}
 }

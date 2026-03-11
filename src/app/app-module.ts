@@ -1,23 +1,39 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
-import { Home } from './home/home';
-import { Files } from './files/files';
-import { Add } from './add/add';
-import { Notifications } from './notifications/notifications';
-import { Settings } from './settings/settings';
-import { LogIn } from './log-in/log-in';
-import { Dashboard } from './home/dashboard/dashboard';
-import { Cameras } from './home/cameras/cameras';
-import { Navigation } from './navigation/navigation';
-import { SignIn } from './sign-in/sign-in';
+import { authInterceptorProviders } from './auth/auth.interceptor';
+
+import { App } from './app'; // Supposons que la classe est 'App'
+import { Home } from './components/home/home';
+import { Files } from './components/files/files';
+import { Add } from './components/add/add';
+import { Notifications } from './components/notifications/notifications';
+import { Settings } from './components/settings/settings';
+import { LogIn } from './components/log-in/log-in';
+import { Dashboard } from './components/home/dashboard/dashboard';
+import { Cameras } from './components/home/cameras/cameras';
+import { Navigation } from './components/navigation/navigation';
+import { SignInComponent } from './components/sign-in/sign-in';
 
 @NgModule({
-  declarations: [App, Home, Files, Add, Notifications, Settings, LogIn, Dashboard, Cameras, Navigation, SignIn],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [provideBrowserGlobalErrorListeners()],
+  declarations: [
+    App,
+    Home,
+    Files,
+    Add,
+    Notifications,
+    Settings,
+    Dashboard,
+    Cameras,
+    Navigation,
+    LogIn,
+    SignInComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  providers: [authInterceptorProviders],
   bootstrap: [App],
 })
 export class AppModule {}

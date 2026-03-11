@@ -1,0 +1,24 @@
+<section class="section_login">
+  <img src="/logo.png" alt="Logo CamView" class="logo" />
+  <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <h2>Nom d'utilisateur</h2>
+    <input type="text" placeholder="Identifiant" formControlName="username" />
+
+    <h2>Email</h2>
+    <input type="email" placeholder="Email" formControlName="email" />
+
+    <h2>Mot de passe</h2>
+    <input type="password" placeholder="Mot de passe" formControlName="password" />
+
+    <p>Déjà un compte ? <a routerLink="/login">Connectez-vous !</a></p>
+    <button type="submit" [disabled]="registerForm.invalid">S'inscrire</button>
+
+    <!-- Messages d'erreur et de succès -->
+    <div *ngIf="errorMessage()" class="error-message">
+      {{ errorMessage() }}
+    </div>
+    <div *ngIf="successMessage()" class="success-message">
+      {{ successMessage() }}
+    </div>
+  </form>
+</section>
