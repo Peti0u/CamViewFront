@@ -1,1 +1,14 @@
-<p>cameras works!</p>
+<div
+  [style]="
+    'display: flex; flex-direction: row; gap: 10px; justify-content: center; align-items: center; height: 100%; width: 100%;'
+  "
+>
+  <iframe
+    src="http://172.17.8.36:8765/picture/1/frame/"
+    style="border: none; width: 640px; height: 480px"
+  ></iframe>
+  <iframe
+    src="http://172.17.8.36:8765/picture/2/frame/"
+    style="border: none; width: 640px; height: 480px"
+  ></iframe>
+</div>
