@@ -7,3 +7,18 @@
   font-family: ReemKufi;
   src: url(/Fonts/ReemKufi/reem-kufi-regular.ttf);
 }
+
+:root {
+  --primary-color: #ededed;
+  --accent-color: #ededed50;
+}
+
+body {
+  background-image: url(/background_img.jpg);
+  background-size: cover;
+  margin: 0 auto;
+  overflow: hidden;
+  color: var(--primary-color);
+  font-family: Poppins;
+  font-size: 2vw;
+}
