@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post(AUTH_API + 'signin', credentials).pipe(
       tap((response: any) => {
         this.saveToken(response.accessToken);
-        this.isLoggedIn.set(true); // Mettre à jour le signal
+        this.isLoggedIn.set(true);
       }),
     );
   }
@@ -33,7 +33,7 @@ export class AuthService {
 
   logout(): void {
     window.localStorage.removeItem(TOKEN_KEY);
-    this.isLoggedIn.set(false); // Mettre à jour le signal
+    this.isLoggedIn.set(false);
     this.router.navigate(['/login']);
   }
 

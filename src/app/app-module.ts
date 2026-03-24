@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-module';
 import { authInterceptorProviders } from './auth/auth.interceptor';
 
-import { App } from './app'; // Supposons que la classe est 'App'
+import { App } from './app';
 import { Home } from './components/home/home';
 import { Files } from './components/files/files';
 import { Add } from './components/add/add';
@@ -21,7 +21,6 @@ import { SignInComponent } from './components/sign-in/sign-in';
 @NgModule({
   declarations: [
     App,
-    Home,
     Files,
     Add,
     Notifications,
@@ -32,7 +31,7 @@ import { SignInComponent } from './components/sign-in/sign-in';
     LogIn,
     SignInComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, Home],
   providers: [authInterceptorProviders],
   bootstrap: [App],
 })

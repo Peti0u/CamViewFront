@@ -30,7 +30,6 @@ export class SignInComponent {
     if (this.registerForm.valid) {
       this.errorMessage.set('');
       this.successMessage.set('');
-      console.log("FRONTEND: Tentative d'inscription avec :", this.registerForm.value);
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
           console.log('FRONTEND: Inscription réussie !');
