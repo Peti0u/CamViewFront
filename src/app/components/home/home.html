@@ -1,5 +1,15 @@
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/cameras">Caméras</a>
-</nav>
-<section><router-outlet /></section>
+<header class="top-bar">
+  <!-- Le logo est à l'extérieur du nav -->
+  <img src="./logo.png" alt="Logo" class="side-logo" />
+
+  <!-- La bulle centrale -->
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="is_selected">Dashboard</a>
+    <a routerLink="/cameras" routerLinkActive="is_selected">Caméras</a>
+  </nav>
+
+  <!-- Le bouton quitter est à l'extérieur du nav -->
+  <img src="./exit.png" alt="Quitter" class="side-button" (click)="onLogout()" />
+</header>
+
+<router-outlet />

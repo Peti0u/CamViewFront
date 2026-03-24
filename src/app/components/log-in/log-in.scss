@@ -8,9 +8,9 @@
   margin-top: 10vh;
   margin-bottom: 10vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
 }
 
 .section_login img {
@@ -23,7 +23,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: normal;
-  margin-left: 15%;
+  // margin-left: 15%;
   font-family: ReemKufi;
 }
 
@@ -41,7 +41,6 @@
   color: #ededed;
   padding: 5px;
   padding-left: 10px;
-  width: 70%;
 }
 
 .section_login ::placeholder {
@@ -70,12 +69,10 @@
   }
 }
 .section_login button {
-  width: 80%;
   margin: 0 auto;
   font-size: 20px;
   margin-top: 10px;
   padding: 5px;
-  width: 60%;
   cursor: pointer;
   border-radius: 15px;
   border: none;
