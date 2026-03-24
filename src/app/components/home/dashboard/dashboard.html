@@ -1,7 +1,15 @@
 <section>
   <div>
     <button>Vous avez 1 nouvelle notification</button>
-    <div>Mini interface caméra à faire</div>
+    <div>
+      <div>
+        <app-chevron-left-icon (click)="ChangeCam(-1, 'next')" /><img
+          [src]="cam_list[cam_selected]"
+          alt=""
+        /><app-chevron-right-icon (click)="ChangeCam(-1, 'previous')" />
+      </div>
+      <div><app-circle-icon /><app-circle-icon /><app-circle-dot-icon /></div>
+    </div>
   </div>
   <div>
     <img src="/pdp.jpeg" />

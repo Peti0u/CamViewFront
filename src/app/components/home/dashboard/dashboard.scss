@@ -28,15 +28,58 @@ div {
   justify-content: center;
 }
 
-div:last-child :first-child {
-  height: 40%;
-  border-radius: 250px;
-}
-
 div:first-child div:last-child {
   height: 65%;
   width: 95%;
   background-color: transparent;
   box-shadow: none;
-  border: 1px solid red;
+}
+
+div:first-child div:last-child div {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+div:first-child div:last-child div:first-child {
+  height: 80%;
+  width: 100%;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0px;
+}
+
+div:first-child div:last-child div:first-child img {
+  height: 80%;
+  border-radius: 5px;
+}
+
+div:first-child div:last-child div:first-child :first-child,
+div:first-child div:last-child div:first-child :last-child {
+  transition: 0.5s;
+}
+div:first-child div:last-child div:first-child :first-child:hover,
+div:first-child div:last-child div:first-child :last-child:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+div:first-child div:last-child div:last-child {
+  height: 20%;
+  width: 100%;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2%;
+}
+
+section div:last-child img {
+  height: 40%;
+  border-radius: 250px;
 }

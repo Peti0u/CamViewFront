@@ -17,6 +17,10 @@ import { Dashboard } from './components/home/dashboard/dashboard';
 import { Cameras } from './components/home/cameras/cameras';
 import { Navigation } from './components/navigation/navigation';
 import { SignInComponent } from './components/sign-in/sign-in';
+import { ChevronLeftIconComponent } from './icons/chevron-left-icon-component/chevron-left-icon-component';
+import { ChevronRightIconComponent } from './icons/chevron-right-icon-component/chevron-right-icon-component';
+import { CircleIconComponent } from './icons/circle-icon-component/circle-icon-component';
+import { CircleDotIconComponent } from './icons/circle-dot-icon-component/circle-dot-icon-component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,16 @@ import { SignInComponent } from './components/sign-in/sign-in';
     LogIn,
     SignInComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ChevronLeftIconComponent,
+    ChevronRightIconComponent,
+    CircleIconComponent,
+    CircleDotIconComponent,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [App],
 })
