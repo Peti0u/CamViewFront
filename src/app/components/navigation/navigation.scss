@@ -1,16 +1,12 @@
 .navbar {
-  position: fixed;
-  bottom: 5%;
-  left: 50%;
-  transform: translate(-50%);
+  margin: 0 auto;
   width: 95%;
-  height: 15%;
+  height: 20vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 20px;
-  border: 1px solid white;
 }
 
 .navbar div {
