@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 import { LogIn } from './components/log-in/log-in';
-import { SignInComponent } from './components/sign-in/sign-in';
+import { SignUpComponent } from './components/sign-up/sign-up';
 import { Home } from './components/home/home';
 import { Files } from './components/files/files';
 import { Add } from './components/add/add';
@@ -19,8 +19,8 @@ const routes: Routes = [
     component: LogIn,
   },
   {
-    path: 'signin',
-    component: SignInComponent,
+    path: 'signup',
+    component: SignUpComponent,
   },
 
   // Routes protégées

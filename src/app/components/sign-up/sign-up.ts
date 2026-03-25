@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.html',
-  styleUrls: ['./sign-in.scss'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.html',
+  styleUrls: ['./sign-up.scss'],
   standalone: false,
 })
-export class SignInComponent {
+export class SignUpComponent {
   registerForm: FormGroup;
   errorMessage = signal('');
   successMessage = signal('');

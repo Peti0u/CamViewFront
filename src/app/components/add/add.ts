@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import { API_ENDPOINTS } from '../../config/constants';
+
 @Component({
   selector: 'app-add-camera',
   standalone: false,
@@ -37,7 +40,7 @@ export class Add implements OnInit {
       notif_state: this.newCamera.notif_state ? 1 : 0,
     };
 
-    const apiUrl = 'http://localhost:8080/api/cameras';
+    const apiUrl = `${environment.apiUrl}${API_ENDPOINTS.CAMERAS}`;
 
     this.http.post(apiUrl, dataToSend).subscribe({
       next: (response) => {
