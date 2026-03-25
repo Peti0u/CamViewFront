@@ -5,81 +5,73 @@ section {
   align-items: center;
   justify-content: center;
   gap: 40%;
-}
 
-div:first-child {
-  width: 30%;
-  height: 80%;
-  gap: 5%;
-}
+  div {
+    background-color: var(--accent-color);
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-div:last-child {
-  width: 30%;
-  height: 80%;
-}
+    // Bloc de gauche (Notifications/Carousel)
+    &:first-child {
+      width: 30%;
+      height: 80%;
+      gap: 5%;
 
-div {
-  background-color: var(--accent-color);
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+      div:last-child {
+        height: 65%;
+        width: 95%;
+        background-color: transparent;
+        box-shadow: none;
 
-div:first-child div:last-child {
-  height: 65%;
-  width: 95%;
-  background-color: transparent;
-  box-shadow: none;
-}
+        div {
+          width: 100%;
+          height: 100%;
+          background-color: transparent;
+          box-shadow: none;
+          flex-direction: row;
 
-div:first-child div:last-child div {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  box-shadow: none;
-}
+          &:first-child {
+            height: 80%;
+            border-radius: 0px;
+            gap: 0px;
 
-div:first-child div:last-child div:first-child {
-  height: 80%;
-  width: 100%;
-  border-radius: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 0px;
-}
+            img {
+              height: 80%;
+              border-radius: 5px;
+            }
 
-div:first-child div:last-child div:first-child img {
-  height: 80%;
-  border-radius: 5px;
-}
+            app-chevron-left-icon,
+            app-chevron-right-icon {
+              transition: 0.5s;
+              &:hover {
+                cursor: pointer;
+                opacity: 0.5;
+              }
+            }
+          }
 
-div:first-child div:last-child div:first-child :first-child,
-div:first-child div:last-child div:first-child :last-child {
-  transition: 0.5s;
-}
-div:first-child div:last-child div:first-child :first-child:hover,
-div:first-child div:last-child div:first-child :last-child:hover {
-  cursor: pointer;
-  opacity: 0.5;
-}
+          &:last-child {
+            height: 20%;
+            border-radius: 0px;
+            gap: 2%;
+          }
+        }
+      }
+    }
 
-div:first-child div:last-child div:last-child {
-  height: 20%;
-  width: 100%;
-  border-radius: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 2%;
-}
+    // Bloc de droite (Profil)
+    &:last-child {
+      width: 30%;
+      height: 80%;
 
-section div:last-child img {
-  height: 40%;
-  border-radius: 250px;
+      img {
+        height: 40%;
+        border-radius: 250px;
+      }
+    }
+  }
 }
