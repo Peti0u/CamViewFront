@@ -1,1 +1,62 @@
-<p>add works!</p>
+<div class="add-cam-container">
+  <h2>Ajouter une Caméra</h2>
+
+  <form (ngSubmit)="onSubmit(camForm)" #camForm="ngForm">
+    <div class="form-group">
+      <label for="camera_name">Nom de la caméra</label>
+      <input
+        type="text"
+        id="camera_name"
+        name="camera_name"
+        [(ngModel)]="newCamera.camera_name"
+        required
+        placeholder="Ex: Salon, Entrée..."
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="adr_ip">Adresse IP (Raspberry Pi)</label>
+      <input
+        type="text"
+        id="adr_ip"
+        name="adr_ip"
+        [(ngModel)]="newCamera.adr_ip"
+        required
+        placeholder="Ex: 172.17.8.223"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lien_http">Lien du flux vidéo</label>
+      <input
+        type="url"
+        id="lien_http"
+        name="lien_http"
+        [(ngModel)]="newCamera.lien_http"
+        required
+        placeholder="http://172.17.8.223:8081"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="form-group toggle-group">
+      <label for="notif_state">Activer les notifications</label>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="notif_state"
+          name="notif_state"
+          [(ngModel)]="newCamera.notif_state"
+        />
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-cancel">Annuler</button>
+      <button type="submit" class="btn-submit" [disabled]="!camForm.valid">Valider</button>
+    </div>
+  </form>
+</div>

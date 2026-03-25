@@ -6,7 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-module';
 import { authInterceptorProviders } from './auth/auth.interceptor';
 
-import { App } from './app';
+import { FormsModule } from '@angular/forms';
+import { App } from './app'; // Supposons que la classe est 'App'
 import { Home } from './components/home/home';
 import { Files } from './components/files/files';
 import { Add } from './components/add/add';
@@ -35,16 +36,7 @@ import { CircleDotIconComponent } from './icons/circle-dot-icon-component/circle
     LogIn,
     SignInComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    ChevronLeftIconComponent,
-    ChevronRightIconComponent,
-    CircleIconComponent,
-    CircleDotIconComponent,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule],
   providers: [authInterceptorProviders],
   bootstrap: [App],
 })
