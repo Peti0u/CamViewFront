@@ -29,6 +29,9 @@ import { PowerIconComponent } from './icons/power-icon/power-icon';
 import { BellIconComponent } from './icons/bell-icon/bell-icon';
 import { SettingsIconComponent } from './icons/settings-icon/settings-icon';
 import { CircleSelectedIconComponent } from './icons/circle-selected-icon/circle-selected-icon';
+import { HouseIconComponent } from './icons/home-icon/home-icon';
+import { FolderIconComponent } from './icons/folder-icon/folder-icon';
+import { PlusIconComponent } from './icons/plus-icon/plus-icon';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import { CircleSelectedIconComponent } from './icons/circle-selected-icon/circle
     VideoIconComponent,
     BellIconComponent,
     SettingsIconComponent,
+    HouseIconComponent,
+    FolderIconComponent,
+    PlusIconComponent,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [App],
