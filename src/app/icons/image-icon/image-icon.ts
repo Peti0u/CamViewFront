@@ -33,7 +33,7 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule],
 })
 export class ImageIconComponent {
-  @Input() size: string = 'fit-content';
+  @Input() size: string = '100%';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;
   @Input() background: string = 'transparent';

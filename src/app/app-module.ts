@@ -32,6 +32,8 @@ import { CircleSelectedIconComponent } from './icons/circle-selected-icon/circle
 import { HouseIconComponent } from './icons/home-icon/home-icon';
 import { FolderIconComponent } from './icons/folder-icon/folder-icon';
 import { PlusIconComponent } from './icons/plus-icon/plus-icon';
+import { ExpandIconComponent } from './icons/expand-icon/expand-icon';
+import { PenLineIconComponent } from './icons/pen-line-icon/pen-line-icon';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { PlusIconComponent } from './icons/plus-icon/plus-icon';
     HouseIconComponent,
     FolderIconComponent,
     PlusIconComponent,
+    PenLineIconComponent,
+    ExpandIconComponent,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [App],

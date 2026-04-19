@@ -22,6 +22,10 @@ export class Cameras {
       nom: '',
     },
   ];
+
+  id_circle = 0;
+  circle_number = Array.from({ length: Math.ceil(this.cameras.length / 2) }, (_, i) => i + 1); //nb de cercles a afficher dans la nav
+
   // constructor(private router: Router) {}
   // ngOnInit() {
   //   const clearModals = setInterval(() => {

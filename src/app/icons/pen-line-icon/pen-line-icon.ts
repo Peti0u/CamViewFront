@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-folder-icon',
+  selector: 'app-pen-line-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +22,14 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+        d="M13 21h8m.174-14.188a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class FolderIconComponent {
+export class PenLineIconComponent {
   @Input() size: string = '100%';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;

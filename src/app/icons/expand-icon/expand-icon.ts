@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-folder-icon',
+  selector: 'app-expand-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +22,14 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+        d="m15 15l6 6M15 9l6-6m0 13v5h-5m5-13V3h-5M3 16v5h5m-5 0l6-6M3 8V3h5m1 6L3 3"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class FolderIconComponent {
+export class ExpandIconComponent {
   @Input() size: string = '100%';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;

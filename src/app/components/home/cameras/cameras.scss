@@ -1,27 +1,96 @@
 section {
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 
+p {
+  margin: 0 !important;
+}
+
 // mosaique
 section > :first-child {
-  width: 90%;
+  width: 70vw;
+  padding-left: 10vw;
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 4%;
+}
+
+// cam
+section > :first-child > div {
+  position: relative;
+  height: 45vh;
+  width: 48%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+section > :first-child > div img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+section > :first-child > div > :first-child {
+  top: 8vw;
+}
+
+.cam_title {
+  position: absolute;
+  left: 1vw;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--accent-color);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1vw;
+}
+
+.cam_lat_bar {
+  position: absolute;
+  right: 1vw;
+  width: 2vw;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.big_cam > :first-child {
+  width: 100% !important;
+  max-height: 75vh !important;
+  padding-top: 5vh !important;
+}
+
+.big_cam > :first-child > :first-child {
+  top: 1vw !important;
 }
 
 // nav laterale
 section > :last-child {
-  width: 2%;
-  padding-right: 4%;
-  padding-left: 4%;
-  height: 100%;
+  position: fixed;
+  width: 2vw;
+  height: 65vh;
+  right: 5vw;
+  top: 15vh;
+  padding-right: 4vw;
+  padding-left: 4vw;
   display: flex;
   flex-direction: column;
   align-items: center;

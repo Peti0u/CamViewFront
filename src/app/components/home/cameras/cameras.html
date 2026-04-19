@@ -8,8 +8,16 @@
 </div> -->
 
 <section>
-  <div>
-    <div *ngFor="let c of cameras"><img src="{{ c.lien }}" alt="" /></div>
+  <div [class.big_cam]="cameras.length % 2 != 0">
+    <div *ngFor="let c of cameras">
+      <div class="cam_title"><p class="p_description">Nom de la cam</p></div>
+      <img src="{{ c.lien }}" alt="" />
+      <div class="cam_lat_bar"><app-pen-line-icon /><app-bell-icon /><app-expand-icon /></div>
+    </div>
   </div>
-  <div><app-circle-icon /><app-circle-selected-icon /></div>
+  <div>
+    <div *ngFor="let c of circle_number; let i = index">
+      <app-circle-icon *ngIf="i != id_circle" /><app-circle-selected-icon *ngIf="i == id_circle" />
+    </div>
+  </div>
 </section>

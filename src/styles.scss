@@ -45,3 +45,11 @@ a {
   text-decoration: none;
   color: var(--primary-color);
 }
+
+.p_description {
+  font-size: 1.5vw;
+}
+
+::-webkit-scrollbar {
+  width: 0vh;
+}
