@@ -11,6 +11,7 @@ import { Notifications } from './components/notifications/notifications';
 import { Settings } from './components/settings/settings';
 import { Dashboard } from './components/home/dashboard/dashboard';
 import { Cameras } from './components/home/cameras/cameras';
+import { FullCamera } from './components/full-camera/full-camera';
 
 const routes: Routes = [
   // Routes publiques
@@ -49,6 +50,7 @@ const routes: Routes = [
     component: Notifications,
     canActivate: [AuthGuard],
   },
+  { path: 'camera', component: FullCamera, canActivate: [AuthGuard] },
   {
     path: 'settings',
     component: Settings,

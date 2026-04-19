@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-chevron-right-icon',
+  selector: 'app-arrow-left-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,15 +22,15 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="m9 18l6-6l-6-6"
+        d="m12 19l-7-7l7-7m7 7H5"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class ChevronRightIconComponent {
-  @Input() size: string = 'fit-content';
+export class ArrowLeftIconComponent {
+  @Input() size: string = '5vh';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;
   @Input() background: string = 'transparent';
@@ -61,6 +61,8 @@ export class ChevronRightIconComponent {
           ? `drop-shadow(0 ${this.shadow}px ${this.shadow * 2}px rgba(0,0,0,0.3))`
           : undefined,
       backgroundColor: this.background !== 'transparent' ? this.background : undefined,
+      margin: 0,
+      padding: 0,
     };
   }
 }

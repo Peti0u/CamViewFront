@@ -1,0 +1,111 @@
+section {
+  height: 75vh;
+  width: 100%;
+}
+
+a {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: fit-content;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  height: fit-content !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+a * {
+  height: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  stroke-width: 0.5px;
+}
+
+section > div:first-child {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section > div:last-child {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 65vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam_chevron {
+  object-fit: cover;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam_chevron * {
+  height: 30%;
+  transition: 0.5s;
+}
+.cam_chevron *:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+// div globale cam
+.cam_cam {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+// cam
+.cam_cam > div:first-child {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cam_cam > div:first-child img {
+  width: 100%;
+  object-fit: cover;
+}
+
+// menu cam
+.cam_cam > div:last-child {
+  width: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cam_cam > div:last-child * {
+  width: 50%;
+  transition: 0.5s;
+}
+
+.cam_cam > div:last-child *:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.cam_cam > div:last-child :first-child {
+  color: red;
+}

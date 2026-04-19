@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-chevron-right-icon',
+  selector: 'app-bell-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +22,14 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="m9 18l6-6l-6-6"
+        d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class ChevronRightIconComponent {
+export class BellIconComponent {
   @Input() size: string = 'fit-content';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;

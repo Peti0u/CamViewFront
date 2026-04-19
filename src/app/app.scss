@@ -1,7 +1,30 @@
 section {
+  position: relative;
   margin: 0 auto;
   width: 90%;
   height: 75vh;
   margin-top: 5vh;
   border: 1px solid red;
+}
+
+img {
+  position: absolute;
+  z-index: 2;
+  height: 10vh;
+  top: 0;
+  left: 0;
+}
+
+section :nth-child(2) {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  padding-top: 2.5vh;
+  transition: 0.5s;
+}
+
+section :nth-child(2):hover {
+  opacity: 0.5;
+  cursor: pointer;
 }

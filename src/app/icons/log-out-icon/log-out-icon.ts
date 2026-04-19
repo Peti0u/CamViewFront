@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-chevron-right-icon',
+  selector: 'app-log-out-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,15 +22,15 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="m9 18l6-6l-6-6"
+        d="m16 17l5-5l-5-5m5 5H9m0 9H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class ChevronRightIconComponent {
-  @Input() size: string = 'fit-content';
+export class LogOutIconComponent {
+  @Input() size: string = '5vh';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;
   @Input() background: string = 'transparent';

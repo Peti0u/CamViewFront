@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-chevron-right-icon',
+  selector: 'app-power-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,14 +22,14 @@ import { Component, Input } from '@angular/core';
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="m9 18l6-6l-6-6"
+        d="M12 2v10m6.4-5.4a9 9 0 1 1-12.77.04"
       />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class ChevronRightIconComponent {
+export class PowerIconComponent {
   @Input() size: string = 'fit-content';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;

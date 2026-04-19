@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-chevron-right-icon',
+  selector: 'app-image-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,20 +16,23 @@ import { Component, Input } from '@angular/core';
       stroke-linejoin="round"
       [ngStyle]="getStyle()"
     >
-      <path
+      <g
         fill="none"
         stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-        d="m9 18l6-6l-6-6"
-      />
+      >
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+        <circle cx="9" cy="9" r="2" />
+        <path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+      </g>
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class ChevronRightIconComponent {
+export class ImageIconComponent {
   @Input() size: string = 'fit-content';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;
