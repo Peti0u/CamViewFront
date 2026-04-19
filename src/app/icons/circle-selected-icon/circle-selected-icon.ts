@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-circle-dot-icon',
+  selector: 'app-circle-selected-icon',
   template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,23 +16,23 @@ import { Component, Input } from '@angular/core';
       stroke-linejoin="round"
       [ngStyle]="getStyle()"
     >
-      <g
-        fill="none"
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        fill="white"
         stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="1"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="1" />
-      </g>
+      />
     </svg>
   `,
   standalone: true,
   imports: [CommonModule],
 })
-export class CircleDotIconComponent {
-  @Input() size: string = '3vh';
+export class CircleSelectedIconComponent {
+  @Input() size: string = 'fit-content';
   @Input() color: string = '#000000';
   @Input() strokeWidth: number = 2;
   @Input() background: string = 'transparent';

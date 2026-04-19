@@ -20,7 +20,6 @@ import { SignUpComponent } from './components/sign-up/sign-up';
 import { ChevronLeftIconComponent } from './icons/chevron-left-icon-component/chevron-left-icon-component';
 import { ChevronRightIconComponent } from './icons/chevron-right-icon-component/chevron-right-icon-component';
 import { CircleIconComponent } from './icons/circle-icon-component/circle-icon-component';
-import { CircleDotIconComponent } from './icons/circle-dot-icon-component/circle-dot-icon-component';
 import { LogOutIconComponent } from './icons/log-out-icon/log-out-icon';
 import { FullCamera } from './components/full-camera/full-camera';
 import { ArrowLeftIconComponent } from './icons/arrow-left-icon/arrow-left-icon';
@@ -29,6 +28,7 @@ import { ImageIconComponent } from './icons/image-icon/image-icon';
 import { PowerIconComponent } from './icons/power-icon/power-icon';
 import { BellIconComponent } from './icons/bell-icon/bell-icon';
 import { SettingsIconComponent } from './icons/settings-icon/settings-icon';
+import { CircleSelectedIconComponent } from './icons/circle-selected-icon/circle-selected-icon';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { SettingsIconComponent } from './icons/settings-icon/settings-icon';
     Navigation,
     LogIn,
     SignUpComponent,
-    Camera,
+    Cameras,
     FullCamera,
   ],
   imports: [
@@ -54,7 +54,7 @@ import { SettingsIconComponent } from './icons/settings-icon/settings-icon';
     ChevronLeftIconComponent,
     ChevronRightIconComponent,
     CircleIconComponent,
-    CircleDotIconComponent,
+    CircleSelectedIconComponent,
     LogOutIconComponent,
     ArrowLeftIconComponent,
     PowerIconComponent,
