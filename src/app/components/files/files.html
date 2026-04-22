@@ -1,1 +1,30 @@
-<section><p>files works!</p></section>
+<section>
+  <div class="trans_bloc">
+    <h1>Archives</h1>
+    <nav>
+      <div class="trans_bloc"><app-search-icon /><input type="text" /></div>
+      <app-filter-icon /><app-layout-grid-icon /><app-scissors-icon /><app-copy-icon /><app-clipboard-paste-icon /><app-trash-icon />
+    </nav>
+    <div>
+      <div *ngFor="let f of folders; let i = index">
+        <div
+          class="trans_bloc folder_bloc"
+          (click)="id_folder_opened == i ? (id_folder_opened = -1) : (id_folder_opened = i)"
+        >
+          <app-folder-icon />
+          <p>{{ f.name }}</p>
+          <p></p>
+          <app-pen-line-icon /><app-info-icon /><app-trash-icon />
+        </div>
+        <div *ngIf="id_folder_opened == i">
+          <div *ngFor="let c of f.content; let index" class="trans_bloc content_bloc">
+            <app-image-icon />
+            <p>{{ c.archive_name }}</p>
+            <p>{{ c.creation_date }}</p>
+            <app-pen-line-icon /><app-info-icon /><app-trash-icon />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

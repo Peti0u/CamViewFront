@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
         stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        stroke-width="1"
       >
         <circle cx="12" cy="12" r="10" />
         <path d="M12 16v-4m0-4h.01" />

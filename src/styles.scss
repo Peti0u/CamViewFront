@@ -50,6 +50,13 @@ a {
   font-size: 1.5vw;
 }
 
+.trans_bloc {
+  background-color: #ededed20;
+  backdrop-filter: blur(15px);
+  border-radius: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 ::-webkit-scrollbar {
   width: 0vh;
 }

@@ -3,3 +3,136 @@ section {
   padding-top: 10vh;
   width: 100%;
 }
+
+section > .trans_bloc {
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trans_bloc:first-child * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trans_bloc:first-child h1 {
+  font-size: 2vw;
+  height: 10vh;
+  width: 100%;
+  margin: 0;
+}
+
+.trans_bloc:first-child nav {
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10vh;
+  width: 80%;
+}
+
+.trans_bloc:first-child nav div {
+  height: 100% !important;
+  width: 30vw;
+}
+
+.trans_bloc:first-child nav div input {
+  width: 25vw;
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-family: Poppins;
+  font-size: 1.5vw;
+}
+
+.trans_bloc:first-child nav div input:focus {
+  border: none;
+  outline: none;
+}
+
+.trans_bloc:first-child nav * {
+  height: 60%;
+}
+
+// content
+.trans_bloc:first-child > div {
+  flex-direction: column;
+  justify-content: start;
+  gap: 1vh;
+  height: 35vh;
+  overflow: scroll;
+  width: 80%;
+  padding-bottom: 5vh;
+}
+
+// bloc des folders
+.trans_bloc:first-child > div > div {
+  height: fit-content;
+  flex-direction: column;
+  width: 100%;
+  gap: 1vh;
+}
+
+// bloc content du folder
+.trans_bloc:first-child > div > div > :last-child {
+  height: fit-content;
+  flex-direction: column;
+  width: 100%;
+  gap: 1vh;
+}
+
+//
+.folder_bloc {
+  justify-content: space-between;
+  flex-direction: row !important;
+  width: 100%;
+  height: 10vh !important;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+.folder_bloc:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.folder_bloc p {
+  width: 40% !important;
+  justify-content: start !important;
+}
+
+.folder_bloc > * {
+  height: 50%;
+  width: 10%;
+}
+
+//
+.content_bloc {
+  justify-content: space-between;
+  flex-direction: row !important;
+  width: 90%;
+  height: 10vh !important;
+  border-radius: 250px;
+  transition: 0.5s;
+}
+.content_bloc:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.content_bloc p {
+  width: 40% !important;
+  justify-content: start !important;
+}
+
+// date
+.content_bloc p:nth-child(3) {
+  justify-content: end !important;
+}
+
+.content_bloc > * {
+  height: 50%;
+  width: 10%;
+}

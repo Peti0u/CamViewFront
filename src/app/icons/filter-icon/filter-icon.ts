@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
         stroke="currentColor"
         stroke-linecap="round"
         stroke-linejoin="round"
-        stroke-width="2"
+        stroke-width="1"
         d="M22 3H2l8 9.46V19l4 2v-8.54z"
       />
     </svg>
