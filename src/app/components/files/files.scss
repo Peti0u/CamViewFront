@@ -5,8 +5,9 @@ section {
 }
 
 section > .trans_bloc {
-  height: 100%;
-  width: 100%;
+  margin: 0 auto;
+  height: 65vh;
+  width: 80%;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -88,9 +89,9 @@ section > .trans_bloc {
 .folder_bloc {
   justify-content: space-between;
   flex-direction: row !important;
-  width: 100%;
+  width: 95% !important;
   height: 10vh !important;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: 0.5s;
 }
 .folder_bloc:hover {

@@ -1,66 +1,71 @@
-<div class="add-cam-container">
-  <h2>Ajouter une Caméra</h2>
+<section>
+  <div class="add-cam-container trans_bloc">
+    <h2>Ajouter une Caméra</h2>
 
-  <form (ngSubmit)="onSubmit(camForm)" #camForm="ngForm">
-    <div class="form-grid">
-      <div class="form-group">
-        <label for="camera_name">Nom de la caméra</label>
-        <input
-          type="text"
-          id="camera_name"
-          name="camera_name"
-          [(ngModel)]="newCamera.camera_name"
-          required
-          placeholder="Ex: Salon..."
-          autocomplete="off"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="adr_ip">Adresse IP (Raspberry Pi)</label>
-        <input
-          type="text"
-          id="adr_ip"
-          name="adr_ip"
-          [(ngModel)]="newCamera.adr_ip"
-          required
-          placeholder="Ex: 172.17.8.223"
-          autocomplete="off"
-        />
-      </div>
-
-      <div class="form-group full-width">
-        <label for="lien_http">Lien du flux vidéo</label>
-        <input
-          type="url"
-          id="lien_http"
-          name="lien_http"
-          [(ngModel)]="newCamera.lien_http"
-          required
-          placeholder="http://172.17.8.223:8081"
-          autocomplete="off"
-        />
-      </div>
-    </div>
-
-    <div class="actions-bar">
-      <div class="toggle-action">
-        <label class="switch">
+    <form (ngSubmit)="onSubmit(camForm)" #camForm="ngForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="camera_name">Nom de la caméra</label>
           <input
-            type="checkbox"
-            id="notif_state"
-            name="notif_state"
-            [(ngModel)]="newCamera.notif_state"
+            class="trans_bloc"
+            type="text"
+            id="camera_name"
+            name="camera_name"
+            [(ngModel)]="newCamera.camera_name"
+            required
+            placeholder="Ex: Salon..."
+            autocomplete="off"
           />
-          <span class="slider"></span>
-        </label>
-        <span class="toggle-label">Notifications</span>
+        </div>
+
+        <div class="form-group">
+          <label for="adr_ip">Adresse IP (Raspberry Pi)</label>
+          <input
+            class="trans_bloc"
+            type="text"
+            id="adr_ip"
+            name="adr_ip"
+            [(ngModel)]="newCamera.adr_ip"
+            required
+            placeholder="Ex: 172.17.8.223"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group full-width">
+          <label for="lien_http">Lien du flux vidéo</label>
+          <input
+            class="trans_bloc"
+            type="url"
+            id="lien_http"
+            name="lien_http"
+            [(ngModel)]="newCamera.lien_http"
+            required
+            placeholder="http://172.17.8.223:8081"
+            autocomplete="off"
+          />
+        </div>
       </div>
 
-      <div class="button-group">
-        <button type="button" class="btn-cancel">Annuler</button>
-        <button type="submit" class="btn-submit" [disabled]="!camForm.valid">Valider</button>
+      <div class="actions-bar">
+        <div class="toggle-action">
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="notif_state"
+              name="notif_state"
+              [(ngModel)]="newCamera.notif_state"
+            />
+            <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Notifications</span>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn-cancel">Annuler</button>
+          <button type="submit" class="btn-submit" [disabled]="!camForm.valid">Valider</button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+</section>
