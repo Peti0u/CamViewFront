@@ -1,1 +1,10 @@
-<p>notifications works!</p>
+<section>
+  <div *ngFor="let n of notifications; let i = index">
+    <div class="trans_bloc notif_bloc">
+      <app-image-icon />
+      <p>{{ n.notification_name }}</p>
+      <p>{{ n.creation_date | date: 'dd/MM/yy HH:mm' }}</p>
+      <app-pen-line-icon /><app-info-icon /><app-trash-icon />
+    </div>
+  </div>
+</section>

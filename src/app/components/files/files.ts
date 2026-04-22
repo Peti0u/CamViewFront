@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ArchiveServices } from '../../services/archive/archive-services';
+import { ArchiveModel } from '../../models/archive-model';
 
 @Component({
   selector: 'app-files',
@@ -6,35 +8,36 @@ import { Component } from '@angular/core';
   templateUrl: './files.html',
   styleUrl: './files.scss',
 })
-export class Files {
+export class Files implements OnInit {
+  archives_services = inject(ArchiveServices);
+  cdr = inject(ChangeDetectorRef);
+
   id_folder_opened = -1;
 
   folders = [
     {
-      name: 'Folder1',
-      content: [
-        {
-          archive_id: 0,
-          camera_id: 0,
-          archive_name: 'Capture1',
-          video_path: '',
-          image_path: '',
-          creation_date: '21/04/26 13h47',
-        },
-      ],
+      name: 'Photos',
+      content: [] as ArchiveModel[],
     },
     {
-      name: 'Folder2',
-      content: [
-        {
-          archive_id: 1,
-          camera_id: 1,
-          archive_name: 'Capture2',
-          video_path: '',
-          image_path: '',
-          creation_date: '22/04/26 18h12',
-        },
-      ],
+      name: 'Vidéos',
+      content: [] as ArchiveModel[],
     },
   ];
+
+  ngOnInit() {
+    this.archives_services.GetAllImages().subscribe({
+      next: (data) => {
+        this.folders[0].content = data;
+        this.cdr.detectChanges();
+      },
+    });
+
+    this.archives_services.GetAllVideos().subscribe({
+      next: (data) => {
+        this.folders[1].content = data;
+        this.cdr.detectChanges();
+      },
+    });
+  }
 }

@@ -1,0 +1,40 @@
+section {
+  height: 65vh;
+  padding-top: 10vh;
+  width: 100%;
+}
+
+section * {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notif_bloc {
+  margin: 0 auto;
+  justify-content: space-between;
+  width: 80%;
+  height: 10vh !important;
+  border-radius: 250px;
+  transition: 0.5s;
+}
+.notif_bloc:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.notif_bloc p {
+  width: 40% !important;
+  justify-content: start !important;
+}
+
+// date
+.notif_bloc p:nth-child(3) {
+  justify-content: end !important;
+}
+
+.notif_bloc > * {
+  height: 50%;
+  width: 10%;
+}
