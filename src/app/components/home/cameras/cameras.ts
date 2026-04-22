@@ -21,6 +21,14 @@ export class Cameras {
       lien: '/exemple_cam3.png',
       nom: '',
     },
+    {
+      lien: '/exemple_cam3.png',
+      nom: '',
+    },
+    {
+      lien: '/exemple_cam3.png',
+      nom: '',
+    },
   ];
 
   id_circle = 0;

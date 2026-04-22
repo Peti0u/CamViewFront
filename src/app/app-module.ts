@@ -34,6 +34,14 @@ import { FolderIconComponent } from './icons/folder-icon/folder-icon';
 import { PlusIconComponent } from './icons/plus-icon/plus-icon';
 import { ExpandIconComponent } from './icons/expand-icon/expand-icon';
 import { PenLineIconComponent } from './icons/pen-line-icon/pen-line-icon';
+import { SearchIcon } from './icons/search-icon/search-icon';
+import { FilterIcon } from './icons/filter-icon/filter-icon';
+import { LayoutGridIcon } from './icons/layout-grid-icon/layout-grid-icon';
+import { ScissorsIcon } from './icons/scissors-icon/scissors-icon';
+import { CopyIcon } from './icons/copy-icon/copy-icon';
+import { PasteIcon } from './icons/paste-icon/paste-icon';
+import { InfosIcon } from './icons/infos-icon/infos-icon';
+import { TrashIcon } from './icons/trash-icon/trash-icon';
 
 @NgModule({
   declarations: [
@@ -49,6 +57,14 @@ import { PenLineIconComponent } from './icons/pen-line-icon/pen-line-icon';
     SignUpComponent,
     Cameras,
     FullCamera,
+    SearchIcon,
+    FilterIcon,
+    LayoutGridIcon,
+    ScissorsIcon,
+    CopyIcon,
+    PasteIcon,
+    InfosIcon,
+    TrashIcon,
   ],
   imports: [
     BrowserModule,
