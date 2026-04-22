@@ -34,14 +34,14 @@ import { FolderIconComponent } from './icons/folder-icon/folder-icon';
 import { PlusIconComponent } from './icons/plus-icon/plus-icon';
 import { ExpandIconComponent } from './icons/expand-icon/expand-icon';
 import { PenLineIconComponent } from './icons/pen-line-icon/pen-line-icon';
-import { SearchIcon } from './icons/search-icon/search-icon';
-import { FilterIcon } from './icons/filter-icon/filter-icon';
-import { LayoutGridIcon } from './icons/layout-grid-icon/layout-grid-icon';
-import { ScissorsIcon } from './icons/scissors-icon/scissors-icon';
-import { CopyIcon } from './icons/copy-icon/copy-icon';
-import { PasteIcon } from './icons/paste-icon/paste-icon';
-import { InfosIcon } from './icons/infos-icon/infos-icon';
-import { TrashIcon } from './icons/trash-icon/trash-icon';
+import { TrashIconComponent } from './icons/trash-icon/trash-icon';
+import { InfoIconComponent } from './icons/infos-icon/infos-icon';
+import { ClipboardPasteIconComponent } from './icons/paste-icon/paste-icon';
+import { CopyIconComponent } from './icons/copy-icon/copy-icon';
+import { ScissorsIconComponent } from './icons/scissors-icon/scissors-icon';
+import { LayoutGridIconComponent } from './icons/layout-grid-icon/layout-grid-icon';
+import { FilterIconComponent } from './icons/filter-icon/filter-icon';
+import { SearchIconComponent } from './icons/search-icon/search-icon';
 
 @NgModule({
   declarations: [
@@ -57,14 +57,6 @@ import { TrashIcon } from './icons/trash-icon/trash-icon';
     SignUpComponent,
     Cameras,
     FullCamera,
-    SearchIcon,
-    FilterIcon,
-    LayoutGridIcon,
-    ScissorsIcon,
-    CopyIcon,
-    PasteIcon,
-    InfosIcon,
-    TrashIcon,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +80,14 @@ import { TrashIcon } from './icons/trash-icon/trash-icon';
     PlusIconComponent,
     PenLineIconComponent,
     ExpandIconComponent,
+    SearchIconComponent,
+    FilterIconComponent,
+    LayoutGridIconComponent,
+    ScissorsIconComponent,
+    CopyIconComponent,
+    ClipboardPasteIconComponent,
+    InfoIconComponent,
+    TrashIconComponent,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [App],
