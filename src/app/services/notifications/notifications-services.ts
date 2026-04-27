@@ -2,17 +2,20 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NotificationsModel } from '../../models/notifications-model';
+import { environment } from '../../../environments/environment';
+import { API_ENDPOINTS } from '../../config/constants';
+
+const NOTIFICATIONS_API = `${environment.apiUrl}${API_ENDPOINTS.NOTIFICATIONS}/`;
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationsServices {
   private _HTTP = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:8080/api/notifications';
 
   GetAll(): Observable<NotificationsModel[]> {
     return new Observable((obs) => {
-      this._HTTP.get<NotificationsModel[]>(`${this.API_URL}/`).subscribe({
+      this._HTTP.get<NotificationsModel[]>(NOTIFICATIONS_API).subscribe({
         next: (data: NotificationsModel[]) => {
           obs.next(data);
           obs.complete();
