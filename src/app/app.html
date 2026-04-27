@@ -1,5 +1,10 @@
 <section>
-  <a routerLink="/"><img src="./logo.png" alt="Logo" class="side-logo" /></a> <app-log-out-icon />
+  <a routerLink="/"><img src="./logo.png" alt="Logo" class="side-logo" /></a>
+  <app-log-out-icon
+    class="logout-btn"
+    *ngIf="authService.isLoggedIn()"
+    (click)="authService.logout()"
+  />
   <router-outlet />
 </section>
 <app-navigation *ngIf="authService.isLoggedIn()"></app-navigation>

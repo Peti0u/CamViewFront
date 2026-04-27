@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently --kill-others \"npm run frontend\" \"npm run backend\"",
-    "frontend": "ng serve --open",
-    "backend": "npm run dev --prefix ../backend",
+    "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
