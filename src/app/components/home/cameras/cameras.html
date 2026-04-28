@@ -1,17 +1,8 @@
-<!-- <div class="camera-grid">
-  <div class="camera-wrapper">
-    <img src="http://172.17.8.223:9081" alt="Caméra 1">
-  </div>
-  <div class="camera-wrapper">
-    <img src="http://172.17.8.223:9082" alt="Caméra 2">
-  </div>
-</div> -->
-
 <section>
   <div [class.big_cam]="cameras.length % 2 != 0">
     <div *ngFor="let c of cameras">
-      <div class="cam_title"><p class="p_description">Nom de la cam</p></div>
-      <img src="{{ c.lien }}" alt="" />
+      <div class="cam_title"><p class="p_description">{{ c.camera_name }}</p></div>
+      <img [src]="getSafeUrl(c.lien_http)" [alt]="c.camera_name" />
       <div class="cam_lat_bar"><app-pen-line-icon /><app-bell-icon /><app-expand-icon /></div>
     </div>
   </div>
