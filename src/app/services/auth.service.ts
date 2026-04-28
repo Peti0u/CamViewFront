@@ -1,17 +1,14 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { API_ENDPOINTS, STORAGE_KEYS } from '../config/constants';
-
-const AUTH_API = `${environment.apiUrl}${API_ENDPOINTS.AUTH}/`;
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn = signal<boolean>(!!this.getToken());
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
@@ -19,30 +16,33 @@ export class AuthService {
   ) {}
 
   login(credentials: any): Observable<any> {
-    return this.http.post(AUTH_API + 'login', credentials).pipe(
-      tap((response: any) => {
-        this.saveToken(response.accessToken);
-        this.isLoggedIn.set(true);
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, credentials).pipe(
+      tap((response) => {
+        if (response.accessToken) {
+          this.saveToken(response.accessToken);
+        }
       }),
     );
   }
 
-  register(user: any): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', user);
+  register(credentials: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/signup`, credentials);
+  }
+
+  saveToken(token: string): void {
+    sessionStorage.setItem('accessToken', token);
+  }
+
+  getToken(): string | null {
+    return sessionStorage.getItem('accessToken');
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 
   logout(): void {
-    window.localStorage.clear();
-    this.isLoggedIn.set(false);
+    sessionStorage.removeItem('accessToken');
     this.router.navigate(['/login']);
-  }
-
-  public saveToken(token: string): void {
-    window.localStorage.removeItem(STORAGE_KEYS.TOKEN);
-    window.localStorage.setItem(STORAGE_KEYS.TOKEN, token);
-  }
-
-  public getToken(): string | null {
-    return window.localStorage.getItem(STORAGE_KEYS.TOKEN);
   }
 }

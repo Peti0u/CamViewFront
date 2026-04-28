@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class SignUpComponent {
           this.registerForm.reset(); // Vide les champs du formulaire
           setTimeout(() => this.router.navigate(['/login']), 2000);
         },
-        error: (err) => {
+        error: (err: HttpErrorResponse) => {
           console.error("FRONTEND: Erreur lors de l'inscription :", err);
           this.errorMessage.set(err.error.message || "L'inscription a échoué.");
         },

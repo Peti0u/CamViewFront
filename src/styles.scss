@@ -60,3 +60,19 @@ a {
 ::-webkit-scrollbar {
   width: 0vh;
 }
+
+.error-message {
+  color: #ff5555;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.success-message {
+  color: #4caf50;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}

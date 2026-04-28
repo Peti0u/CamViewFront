@@ -1,19 +1,61 @@
-<section>
+<section class="main_dashboard">
   <div>
     <button>Vous avez 1 nouvelle notification</button>
     <div>
       <div>
-        <app-chevron-left-icon (click)="ChangeCam(-1, 'next')" /><img
-          [src]="cam_list[cam_selected]"
-          alt=""
-        /><app-chevron-right-icon (click)="ChangeCam(-1, 'previous')" />
+        <app-chevron-left-icon (click)="ChangeCam(-1, 'next')"></app-chevron-left-icon>
+        <img [src]="cam_list[cam_selected]" alt="camera view" />
+        <app-chevron-right-icon (click)="ChangeCam(-1, 'previous')"></app-chevron-right-icon>
       </div>
-      <!-- <div><app-circle-icon /><app-circle-icon /><app-circle-dot-icon /></div> -->
     </div>
   </div>
-  <div>
-    <img src="/pdp.jpeg" />
-    <p>@username</p>
-    <button>Modifier votre profil</button>
+
+  <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
+
+  <div *ngIf="user()">
+    <img
+      [src]="
+        user().profile_picture_url
+          ? baseServerUrl + user().profile_picture_url
+          : '/assets/default-avatar.png'
+      "
+      alt="pdp"
+      class="profile-pic"
+    />
+    <p>@{{ user().username }}</p>
+    <p>{{ user().familyMemberCount }} membre(s) dans la famille</p>
+    <button (click)="openModal()">Modifier votre profil</button>
+  </div>
+
+  <div class="modal-overlay" *ngIf="isModalOpen()">
+    <div class="modal-content">
+      <h3>Modifier le profil</h3>
+
+      <img
+        [src]="
+          user().profile_picture_url
+            ? baseServerUrl + user().profile_picture_url
+            : '/assets/default-avatar.png'
+        "
+        alt="Photo de profil"
+        class="modal-profile-pic"
+      />
+
+      <div class="form-group">
+        <label>Nom d'utilisateur</label>
+        <input type="text" [(ngModel)]="user().username" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="user().email" />
+      </div>
+
+      <div class="form-actions">
+        <button class="secondary" (click)="fileInput.click()">Changer la photo</button>
+        <button (click)="updateProfile()">Enregistrer</button>
+        <button class="close-btn" (click)="closeModal()">Annuler</button>
+      </div>
+    </div>
   </div>
 </section>
