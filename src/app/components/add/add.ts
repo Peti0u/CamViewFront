@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { API_ENDPOINTS } from '../../config/constants';
 
@@ -21,7 +22,7 @@ export class Add implements OnInit {
     notif_state: true,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.newCamera.family_id = this.connectedUserFamilyId;
@@ -45,7 +46,7 @@ export class Add implements OnInit {
     this.http.post(apiUrl, dataToSend).subscribe({
       next: (response) => {
         console.log('Réponse du backend :', response);
-        alert(`La caméra ${dataToSend.camera_name} a été enregistrée avec succès !`);
+        this.router.navigate(['/cameras']);
 
         form.resetForm({
           family_id: this.connectedUserFamilyId,
