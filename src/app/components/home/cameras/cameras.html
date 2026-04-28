@@ -1,14 +1,14 @@
-<section>
-  <div [class.big_cam]="cameras.length % 2 != 0">
-    <div *ngFor="let c of cameras">
-      <div class="cam_title"><p class="p_description">{{ c.camera_name }}</p></div>
-      <img [src]="getSafeUrl(c.lien_http)" [alt]="c.camera_name" />
-      <div class="cam_lat_bar"><app-pen-line-icon /><app-bell-icon /><app-expand-icon /></div>
+<div class="camera-grid-container">
+  <div class="camera-card" *ngFor="let cam of cameras">
+    <div class="video-wrapper">
+      <!-- Si le lien est présent on tente d'afficher, sinon placeholder -->
+      <img [src]="getCameraUrl(cam)" (error)="handleImageError(cam, $event)" alt="Camera feed" />
+      <div class="cam-overlay">
+        <span class="cam-name">{{ cam.camera_name }}</span>
+        <button class="screenshot-btn" (click)="takeScreenshot(cam)">
+          <app-image-icon></app-image-icon>
+        </button>
+      </div>
     </div>
   </div>
-  <div>
-    <div *ngFor="let c of circle_number; let i = index">
-      <app-circle-icon *ngIf="i != id_circle" /><app-circle-selected-icon *ngIf="i == id_circle" />
-    </div>
-  </div>
-</section>
+</div>

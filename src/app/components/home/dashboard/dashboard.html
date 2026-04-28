@@ -1,8 +1,8 @@
 <section class="main_dashboard">
-  <div>
+  <div class="dashboard-block left" *ngIf="!isModalOpen()">
     <button>Vous avez 1 nouvelle notification</button>
-    <div>
-      <div>
+    <div class="carousel-container">
+      <div class="carousel">
         <app-chevron-left-icon (click)="ChangeCam(-1, 'next')"></app-chevron-left-icon>
         <img [src]="cam_list[cam_selected]" alt="camera view" />
         <app-chevron-right-icon (click)="ChangeCam(-1, 'previous')"></app-chevron-right-icon>
@@ -12,7 +12,7 @@
 
   <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
 
-  <div *ngIf="user()">
+  <div class="dashboard-block right" *ngIf="user() && !isModalOpen()">
     <img
       [src]="
         user().profile_picture_url
@@ -24,37 +24,49 @@
     />
     <p>@{{ user().username }}</p>
     <p>{{ user().familyMemberCount }} membre(s) dans la famille</p>
+
+    <div
+      *ngIf="message()"
+      [class]="messageType() === 'success' ? 'success-message' : 'error-message'"
+    >
+      {{ message() }}
+    </div>
+
     <button (click)="openModal()">Modifier votre profil</button>
   </div>
 
-  <div class="modal-overlay" *ngIf="isModalOpen()">
-    <div class="modal-content">
+  <div class="modal-full-width" *ngIf="isModalOpen()">
+    <div class="modal-content" *ngIf="user()">
       <h3>Modifier le profil</h3>
 
-      <img
-        [src]="
-          user().profile_picture_url
-            ? baseServerUrl + user().profile_picture_url
-            : '/assets/default-avatar.png'
-        "
-        alt="Photo de profil"
-        class="modal-profile-pic"
-      />
+      <div class="modal-main-area">
+        <img
+          [src]="
+            user().profile_picture_url
+              ? baseServerUrl + user().profile_picture_url
+              : '/assets/default-avatar.png'
+          "
+          alt="Photo de profil"
+          class="modal-profile-pic"
+        />
 
-      <div class="form-group">
-        <label>Nom d'utilisateur</label>
-        <input type="text" [(ngModel)]="user().username" />
-      </div>
+        <div class="form-body">
+          <div class="form-group">
+            <label>Nom d'utilisateur</label>
+            <input type="text" [(ngModel)]="user().username" />
+          </div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" [(ngModel)]="user().email" />
-      </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="user().email" />
+          </div>
+        </div>
 
-      <div class="form-actions">
-        <button class="secondary" (click)="fileInput.click()">Changer la photo</button>
-        <button (click)="updateProfile()">Enregistrer</button>
-        <button class="close-btn" (click)="closeModal()">Annuler</button>
+        <div class="form-actions">
+          <button class="secondary" (click)="fileInput.click()">Changer la photo</button>
+          <button (click)="updateProfile()">Enregistrer</button>
+          <button class="close-btn" (click)="closeModal()">Annuler</button>
+        </div>
       </div>
     </div>
   </div>

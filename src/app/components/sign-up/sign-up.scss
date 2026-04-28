@@ -1,4 +1,4 @@
-.section_login {
+.section_signup {
   background-color: #ededed50;
   border-radius: 25px;
   margin: 0 auto;
@@ -13,12 +13,12 @@
   justify-content: center;
 }
 
-.section_login img {
+.section_signup img {
   margin: 0 auto;
   width: 50%;
 }
 
-.section_login h2 {
+.section_signup h2 {
   text-align: left;
   margin: 0;
   font-size: 20px;
@@ -26,7 +26,7 @@
   font-family: ReemKufi;
 }
 
-.section_login input {
+.section_signup input {
   margin: 0 auto;
   text-align: left;
   border: none;
@@ -42,17 +42,21 @@
   padding-left: 10px;
 }
 
-.section_login ::placeholder {
+.section_signup ::placeholder {
   color: #ededed90;
   border: 0px;
 }
 
-.section_login input:focus {
+.section_signup input:focus {
   outline: none;
 }
 
-.section_login p,
-.section_login a {
+.section_signup label {
+  font-size: 20px;
+}
+
+.section_signup p,
+.section_signup a {
   margin: 0 auto;
   margin-top: 10px;
   text-align: center;
@@ -65,7 +69,7 @@
   }
 }
 
-.section_login button {
+.section_signup button {
   margin: 0 auto;
   font-size: 20px;
   margin-top: 10px;

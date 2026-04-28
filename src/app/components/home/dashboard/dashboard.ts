@@ -17,6 +17,8 @@ export class Dashboard implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   user = signal<any>(null);
   isModalOpen = signal(false);
+  message = signal<string | null>(null);
+  messageType = signal<'success' | 'error' | null>(null);
   cam_selected = 0;
   cam_list = ['/exemple_cam.png', '/exemple_cam2.png', '/exemple_cam3.png'];
 
@@ -39,6 +41,15 @@ export class Dashboard implements OnInit {
     });
   }
 
+  private showMessage(msg: string, type: 'success' | 'error') {
+    this.message.set(msg);
+    this.messageType.set(type);
+    setTimeout(() => {
+      this.message.set(null);
+      this.messageType.set(null);
+    }, 5000);
+  }
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -48,8 +59,14 @@ export class Dashboard implements OnInit {
       const token = this.auth.getToken();
       const headers = new HttpHeaders().set('x-access-token', token || '');
 
-      this.http.post(`${environment.apiUrl}/user/avatar`, formData, { headers }).subscribe(() => {
-        this.loadProfile(); // Recharge le profil pour voir la nouvelle image
+      this.http.post(`${environment.apiUrl}/user/avatar`, formData, { headers }).subscribe({
+        next: (res: any) => {
+          this.showMessage(res.message || 'Photo mise à jour !', 'success');
+          this.loadProfile();
+        },
+        error: (err) => {
+          this.showMessage(err.error?.message || "Erreur lors de l'envoi de l'image", 'error');
+        },
       });
     }
   }
@@ -65,9 +82,16 @@ export class Dashboard implements OnInit {
   updateProfile() {
     const token = this.auth.getToken();
     const headers = new HttpHeaders().set('x-access-token', token || '');
-    this.http.put(`${environment.apiUrl}/user/update`, this.user(), { headers }).subscribe(() => {
-      this.closeModal();
-      this.loadProfile();
+    this.http.put(`${environment.apiUrl}/user/update`, this.user(), { headers }).subscribe({
+      next: (res: any) => {
+        this.showMessage(res.message || 'Profil mis à jour avec succès !', 'success');
+        this.closeModal();
+        this.loadProfile();
+      },
+      error: (err) => {
+        this.showMessage(err.error?.message || 'Erreur lors de la modification', 'error');
+        this.closeModal();
+      },
     });
   }
 
