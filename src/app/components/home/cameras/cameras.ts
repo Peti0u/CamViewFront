@@ -36,7 +36,7 @@ export class Cameras implements OnInit, OnDestroy {
       family_id: 1,
       camera_name: 'Caméra Entrée (Place-holder)',
       adr_ip: '',
-      lien_http: '/exemple_cam.png',
+      lien_http: '/exemple_cam2.png',
       notif_state: 0,
     },
   ];
@@ -64,7 +64,7 @@ export class Cameras implements OnInit, OnDestroy {
     // Réessayer les caméras toutes les 15 secondes
     this.refreshInterval = setInterval(() => {
       this.currentTimestamp.set(Date.now());
-      this.failedCameraIds.set(new Set()); // On vide la liste des erreurs pour retenter
+      this.failedCameraIds.set(new Set());
     }, 15000);
   }
 
@@ -120,7 +120,7 @@ export class Cameras implements OnInit, OnDestroy {
         family_id: 1,
         camera_name: 'Caméra Salon (Mode Dev)',
         adr_ip: '',
-        lien_http: '/example_cam.png',
+        lien_http: '/exemple_cam.png',
         notif_state: 0,
       },
       {
@@ -128,7 +128,7 @@ export class Cameras implements OnInit, OnDestroy {
         family_id: 1,
         camera_name: 'Caméra Entrée (Mode Dev)',
         adr_ip: '',
-        lien_http: '/example_cam.png',
+        lien_http: '/exemple_cam2.png',
         notif_state: 0,
       },
     ];
@@ -171,7 +171,7 @@ export class Cameras implements OnInit, OnDestroy {
 
   handleImageError(cam: Camera, event: any) {
     // Stop la boucle si le placeholder lui-même est en erreur
-    if (event.target.src.includes('example_cam.png')) {
+    if (event.target.src.includes('exemple_cam.png')) {
       console.warn(`Image de secours introuvable à la racine.`);
       return;
     }
@@ -182,14 +182,14 @@ export class Cameras implements OnInit, OnDestroy {
     this.failedCameraIds.set(newSet);
 
     // Afficher immédiatement le placeholder
-    event.target.src = '/example_cam.png';
+    event.target.src = '/exemple_cam.png';
   }
 
   getCameraUrl(cam: Camera): string {
     if (!cam.lien_http || this.failedCameraIds().has(cam.camera_id)) {
-      return '/example_cam.png';
+      return '/exemple_cam.png';
     }
-    // On ajoute un paramètre de temps pour bypasser le cache et forcer le retry
+    // Paramètre de temps pour bypasser le cache et forcer le retry
     const sep = cam.lien_http.includes('?') ? '&' : '?';
     return `${cam.lien_http}${sep}t=${this.currentTimestamp()}`;
   }

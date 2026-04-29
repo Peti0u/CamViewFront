@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NotificationsModel } from '../../models/notifications-model';
 import { environment } from '../../../environments/environment';
 import { API_ENDPOINTS } from '../../config/constants';
+import { AuthService } from '../auth.service';
 
 const NOTIFICATIONS_API = `${environment.apiUrl}${API_ENDPOINTS.NOTIFICATIONS}/`;
 
@@ -12,18 +13,11 @@ const NOTIFICATIONS_API = `${environment.apiUrl}${API_ENDPOINTS.NOTIFICATIONS}/`
 })
 export class NotificationsServices {
   private _HTTP = inject(HttpClient);
+  private _AUTH = inject(AuthService);
 
   GetAll(): Observable<NotificationsModel[]> {
-    return new Observable((obs) => {
-      this._HTTP.get<NotificationsModel[]>(NOTIFICATIONS_API).subscribe({
-        next: (data: NotificationsModel[]) => {
-          obs.next(data);
-          obs.complete();
-        },
-        error: (err: any) => {
-          console.log('Erreur lors du chargement de la recup de toutes les notifs');
-        },
-      });
-    });
+    const token = this._AUTH.getToken();
+    const headers = new HttpHeaders().set('x-access-token', token || '');
+    return this._HTTP.get<NotificationsModel[]>(NOTIFICATIONS_API, { headers });
   }
 }

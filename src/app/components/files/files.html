@@ -1,30 +1,70 @@
-<section>
-  <div class="trans_bloc">
-    <h1>Archives</h1>
-    <nav>
-      <div class="trans_bloc"><app-search-icon /><input type="text" /></div>
-      <app-filter-icon /><app-layout-grid-icon /><app-scissors-icon /><app-copy-icon /><app-clipboard-paste-icon /><app-trash-icon />
-    </nav>
-    <div>
-      <div *ngFor="let f of folders; let i = index">
-        <div
-          class="trans_bloc folder_bloc"
-          (click)="id_folder_opened == i ? (id_folder_opened = -1) : (id_folder_opened = i)"
-        >
-          <app-folder-icon />
-          <p>{{ f.name }}</p>
-          <p></p>
-          <app-pen-line-icon /><app-info-icon /><app-trash-icon />
+<section class="archives-section">
+  <div class="trans_bloc main-container">
+    <header>
+      <h1>Archives</h1>
+    </header>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <app-search-icon></app-search-icon>
+        <input type="text" placeholder="Rechercher un fichier..." />
+      </div>
+
+      <div class="nav-actions">
+        <button *ngIf="currentPath" (click)="goBack()" class="glass-btn">⬅ Retour</button>
+        <ng-container *ngIf="!movingItem">
+          <button (click)="addNewFolder()" class="glass-btn primary">Nouveau dossier</button>
+        </ng-container>
+        <ng-container *ngIf="movingItem">
+          <button (click)="confirmMove()" class="glass-btn success">📋 Déplacer ici</button>
+          <button (click)="cancelMove()" class="glass-btn">Annuler</button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="file-list">
+      <div *ngFor="let item of items" class="list-item" (click)="navigateInto(item)">
+        <div class="item-visual">
+          <app-folder-icon *ngIf="item.isDirectory"></app-folder-icon>
+          <app-image-icon *ngIf="!item.isDirectory"></app-image-icon>
         </div>
-        <div *ngIf="id_folder_opened == i">
-          <div *ngFor="let c of f.content; let index" class="trans_bloc content_bloc">
-            <app-image-icon />
-            <p>{{ c.archive_name }}</p>
-            <p>{{ c.creation_date | date: 'dd/MM/yy HH:mm' }}</p>
-            <app-pen-line-icon /><app-info-icon /><app-trash-icon />
-          </div>
+
+        <div class="item-info">
+          <p class="item-name">{{ item.name }}</p>
+        </div>
+
+        <div class="quick-actions" (click)="$event.stopPropagation()">
+          <button class="icon-btn" (click)="initiateMove(item, $event)" title="Déplacer">
+            <app-scissors-icon></app-scissors-icon>
+          </button>
+          <button class="icon-btn" (click)="renameItem(item, $event)" title="Renommer">
+            <app-pen-line-icon></app-pen-line-icon>
+          </button>
+          <button class="icon-btn" (click)="infoItem(item, $event)" title="Informations">
+            <app-info-icon></app-info-icon>
+          </button>
+          <button class="icon-btn danger" (click)="deleteItem(item, $event)" title="Supprimer">
+            <app-trash-icon></app-trash-icon>
+          </button>
         </div>
       </div>
+
+      <div class="empty-state" *ngIf="items.length === 0">
+        <p>Ce dossier est vide.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="media-overlay" *ngIf="selectedMedia" (click)="closePreview()">
+    <div class="media-container" (click)="$event.stopPropagation()">
+      <button class="close-overlay" (click)="closePreview()">×</button>
+
+      <!-- Affichage selon le type de média -->
+      <img *ngIf="isImage(selectedMedia)" [src]="getMediaUrl(selectedMedia)" alt="Preview" />
+
+      <video *ngIf="isVideo(selectedMedia)" [src]="getMediaUrl(selectedMedia)" controls autoplay>
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
     </div>
   </div>
 </section>

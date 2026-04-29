@@ -33,9 +33,9 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule],
 })
 export class ImageIconComponent {
-  @Input() size: string = '100%';
+  @Input() size: string = '65%';
   @Input() color: string = '#000000';
-  @Input() strokeWidth: number = 2;
+  @Input() strokeWidth: number = 1;
   @Input() background: string = 'transparent';
   @Input() opacity: number = 1;
   @Input() rotation: number = 0;
