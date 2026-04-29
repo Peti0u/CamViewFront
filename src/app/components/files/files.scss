@@ -1,20 +1,18 @@
-/* Variables pour garder la cohérence */
 $glass-bg: rgba(255, 255, 255, 0.1);
 $glass-border: rgba(255, 255, 255, 0.2);
 $glass-hover: rgba(255, 255, 255, 0.2);
 
 .archives-section {
-  height: 65vh; /* Hauteur originelle respectée */
+  height: 65vh;
   width: 100%;
-  padding-top: 10vh; /* Espace originel respecté */
+  padding-top: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .main-container {
-    width: 80%;
-    height: 65vh; /* Hauteur originelle respectée */
-    background-color: var(--accent-color);
+    width: 100%;
+    height: 65vh;
     box-shadow: 0px 0.5vh 3vh rgba(0, 0, 0, 0.3);
     border-radius: 2vw;
     display: flex;
@@ -26,7 +24,7 @@ $glass-hover: rgba(255, 255, 255, 0.2);
     header {
       h1 {
         margin: 0;
-        font-size: 2vw; /* Taille originelle respectée */
+        font-size: 2vw;
         color: white;
         text-align: center;
         font-weight: 500;
@@ -82,8 +80,12 @@ $glass-hover: rgba(255, 255, 255, 0.2);
       .nav-actions {
         display: flex;
         gap: 1vw;
+        align-items: center;
+        justify-content: center;
+        width: 35%;
 
         .glass-btn {
+          height: 100%;
           background-color: $glass-bg;
           border: 0.1vw solid $glass-border;
           color: white;
@@ -119,8 +121,9 @@ $glass-hover: rgba(255, 255, 255, 0.2);
       display: flex;
       flex-direction: column;
       gap: 1vh;
-      overflow-y: auto;
       padding-right: 1vw;
+      padding-left: 1vw;
+      overflow-y: auto;
 
       /* Custom Scrollbar */
       &::-webkit-scrollbar {
@@ -153,7 +156,7 @@ $glass-hover: rgba(255, 255, 255, 0.2);
         border: 0.1vw solid transparent;
         border-radius: 1.5vw;
         padding: 1vh 2vw;
-        height: 8vh; /* Proche de tes 10vh originels */
+        height: 8vh;
         cursor: pointer;
         transition: all 0.2s ease;
 
@@ -279,17 +282,15 @@ $glass-hover: rgba(255, 255, 255, 0.2);
 
     .close-overlay {
       position: absolute;
-      top: -6vh;
-      right: -2vw;
-      background: none;
-      border: none;
-      color: white;
+      top: -5vh;
+      width: 50%;
+      color: var(glass-hover);
       font-size: 3vw;
       cursor: pointer;
-      opacity: 0.7;
       transition: 0.3s;
 
       &:hover {
+        color: var(glass-bg);
         opacity: 1;
         transform: scale(1.1);
       }

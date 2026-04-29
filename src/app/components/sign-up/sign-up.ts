@@ -36,9 +36,8 @@ export class SignUpComponent {
       this.successMessage.set('');
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          console.log('FRONTEND: Inscription réussie !');
-          this.successMessage.set('Inscription réussie ! Vous allez être redirigé.');
-          this.registerForm.reset(); // Vide les champs du formulaire
+          this.successMessage.set('Inscription réussie !');
+          this.registerForm.reset();
           setTimeout(() => this.router.navigate(['/login']), 2000);
         },
         error: (err: HttpErrorResponse) => {

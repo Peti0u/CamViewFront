@@ -1,12 +1,36 @@
 <div class="camera-grid-container">
-  <div class="camera-card" *ngFor="let cam of cameras">
+  <div
+    class="camera-card"
+    *ngFor="let cam of cameras"
+    [class.is-fullscreen]="fullscreenCameraId() === cam.camera_id"
+  >
     <div class="video-wrapper">
       <!-- Si le lien est présent on tente d'afficher, sinon placeholder -->
       <img [src]="getCameraUrl(cam)" (error)="handleImageError(cam, $event)" alt="Camera feed" />
-      <div class="cam-overlay">
-        <span class="cam-name">{{ cam.camera_name }}</span>
-        <button class="screenshot-btn" (click)="takeScreenshot(cam)">
-          <app-image-icon></app-image-icon>
+
+      <!-- Bulle Nom (Haut Gauche) -->
+      <div class="cam-name-bubble">
+        {{ cam.camera_name }}
+      </div>
+
+      <!-- Barre d'actions (Droite) -->
+      <div class="cam-action-bar">
+        <button class="action-btn" (click)="takeScreenshot(cam)" title="Capturer">
+          <app-image-icon size="1.2vw"></app-image-icon>
+        </button>
+        <button class="action-btn" (click)="renameCamera(cam)" title="Renommer">
+          <app-pen-line-icon size="1.2vw"></app-pen-line-icon>
+        </button>
+        <button
+          class="action-btn"
+          (click)="toggleNotifications(cam)"
+          [class.inactive]="cam.notif_state === 0"
+          title="Notifications"
+        >
+          <app-bell-icon size="1.2vw"></app-bell-icon>
+        </button>
+        <button class="action-btn" (click)="toggleFullscreen(cam.camera_id)" title="Plein écran">
+          <app-layout-grid-icon size="1.2vw"></app-layout-grid-icon>
         </button>
       </div>
     </div>

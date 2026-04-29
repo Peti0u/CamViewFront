@@ -21,7 +21,7 @@ interface Camera {
   styleUrl: './cameras.scss',
 })
 export class Cameras implements OnInit, OnDestroy {
-  // On initialise avec des placeholders pour que les boutons et cartes soient visibles immédiatement
+  // Placeholders pour que les boutons et cartes soient visibles immédiatement
   cameras: Camera[] = [
     {
       camera_id: 1,
@@ -50,6 +50,7 @@ export class Cameras implements OnInit, OnDestroy {
   private refreshInterval: any;
   failedCameraIds = signal<Set<number>>(new Set());
   currentTimestamp = signal<number>(Date.now());
+  fullscreenCameraId = signal<number | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -170,18 +171,15 @@ export class Cameras implements OnInit, OnDestroy {
   }
 
   handleImageError(cam: Camera, event: any) {
-    // Stop la boucle si le placeholder lui-même est en erreur
     if (event.target.src.includes('exemple_cam.png')) {
       console.warn(`Image de secours introuvable à la racine.`);
       return;
     }
 
-    // Marquer cette caméra comme étant en échec pour ce cycle de 15s
     const newSet = new Set(this.failedCameraIds());
     newSet.add(cam.camera_id);
     this.failedCameraIds.set(newSet);
 
-    // Afficher immédiatement le placeholder
     event.target.src = '/exemple_cam.png';
   }
 
@@ -189,8 +187,63 @@ export class Cameras implements OnInit, OnDestroy {
     if (!cam.lien_http || this.failedCameraIds().has(cam.camera_id)) {
       return '/exemple_cam.png';
     }
-    // Paramètre de temps pour bypasser le cache et forcer le retry
     const sep = cam.lien_http.includes('?') ? '&' : '?';
     return `${cam.lien_http}${sep}t=${this.currentTimestamp()}`;
+  }
+
+  toggleFullscreen(id: number) {
+    this.fullscreenCameraId.update((current) => (current === id ? null : id));
+  }
+
+  toggleNotifications(cam: Camera) {
+    const token = this.auth.getToken();
+    const headers = new HttpHeaders().set('x-access-token', token || '');
+    const newState = cam.notif_state === 1 ? 0 : 1;
+
+    this.http
+      .put(
+        `${environment.apiUrl}/cameras/${cam.camera_id}`,
+        {
+          notif_state: newState,
+        },
+        { headers },
+      )
+      .subscribe({
+        next: () => {
+          cam.notif_state = newState;
+          this.showMessage(`Notifications ${newState ? 'activées' : 'désactivées'}`, 'success');
+        },
+        error: (err) => {
+          console.error('Erreur notifications:', err);
+          this.showMessage('Échec de la mise à jour des notifications', 'error');
+        },
+      });
+  }
+
+  renameCamera(cam: Camera) {
+    const newName = prompt('Nouveau nom pour la caméra :', cam.camera_name);
+    if (newName && newName !== cam.camera_name) {
+      const token = this.auth.getToken();
+      const headers = new HttpHeaders().set('x-access-token', token || '');
+
+      this.http
+        .put(
+          `${environment.apiUrl}/cameras/${cam.camera_id}`,
+          {
+            camera_name: newName,
+          },
+          { headers },
+        )
+        .subscribe({
+          next: () => {
+            cam.camera_name = newName;
+            this.showMessage('Caméra renommée avec succès', 'success');
+          },
+          error: (err) => {
+            console.error('Erreur renommage:', err);
+            this.showMessage('Échec du changement de nom', 'error');
+          },
+        });
+    }
   }
 }

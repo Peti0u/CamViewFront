@@ -30,6 +30,18 @@ import { Component, Input } from '@angular/core';
       </g>
     </svg>
   `,
+  styles: [
+    `
+      :host {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      svg {
+        display: block;
+      }
+    `,
+  ],
   standalone: true,
   imports: [CommonModule],
 })
