@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../services/auth.service';
 import { API_ENDPOINTS } from '../../../config/constants';
@@ -12,6 +12,7 @@ interface Camera {
   adr_ip: string;
   lien_http: string;
   notif_state: number;
+  safe_url?: SafeResourceUrl;
 }
 
 @Component({
@@ -21,32 +22,14 @@ interface Camera {
   styleUrl: './cameras.scss',
 })
 export class Cameras implements OnInit, OnDestroy {
-  // Placeholders pour que les boutons et cartes soient visibles immédiatement
-  cameras: Camera[] = [
-    {
-      camera_id: 1,
-      family_id: 1,
-      camera_name: 'Caméra Salon (Place-holder)',
-      adr_ip: '',
-      lien_http: '/exemple_cam.png',
-      notif_state: 0,
-    },
-    {
-      camera_id: 2,
-      family_id: 1,
-      camera_name: 'Caméra Entrée (Place-holder)',
-      adr_ip: '',
-      lien_http: '/exemple_cam2.png',
-      notif_state: 0,
-    },
-  ];
+  cameras: Camera[] = [];
   id_circle = 0;
   circle_number: number[] = [];
   user = signal<any>(null);
   message = signal<string | null>(null);
   messageType = signal<'success' | 'error' | null>(null);
+  safeUrls = new Map<number, SafeResourceUrl>();
 
-  // Gestion du cycle de rafraîchissement
   private refreshInterval: any;
   failedCameraIds = signal<Set<number>>(new Set());
   currentTimestamp = signal<number>(Date.now());
@@ -56,17 +39,17 @@ export class Cameras implements OnInit, OnDestroy {
     private http: HttpClient,
     private sanitizer: DomSanitizer,
     private auth: AuthService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.loadProfile();
     this.loadCameras();
 
-    // Réessayer les caméras toutes les 15 secondes
     this.refreshInterval = setInterval(() => {
       this.currentTimestamp.set(Date.now());
       this.failedCameraIds.set(new Set());
-    }, 15000);
+    }, 60000);
   }
 
   ngOnDestroy() {
@@ -97,14 +80,26 @@ export class Cameras implements OnInit, OnDestroy {
     const token = this.auth.getToken();
     const headers = new HttpHeaders().set('x-access-token', token || '');
     const apiUrl = `${environment.apiUrl}${API_ENDPOINTS.CAMERAS}`;
+
     this.http.get<Camera[]>(apiUrl, { headers }).subscribe({
       next: (data) => {
         if (data && data.length > 0) {
-          this.cameras = data;
+          this.cameras = data.map((cam) => {
+            const url = this.getCameraUrl(cam);
+            if (url && !url.startsWith('/')) {
+              cam.safe_url = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+            }
+            return cam;
+          });
         } else {
           this.setDefaultPlaceholders();
         }
+
         this.updateCirclePagination();
+
+        setTimeout(() => {
+          this.cdr.detectChanges();
+        }, 200);
       },
       error: (err) => {
         console.error('Erreur lors du chargement des caméras :', err);
@@ -146,57 +141,79 @@ export class Cameras implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  takeScreenshot(cam: any) {
+  async takeScreenshot(cam: any) {
     const familyId = this.user()?.family_id || 'unknown';
-    const now = new Date();
-    const timestamp = now.toISOString().replace(/[:T]/g, '-').split('.')[0];
-    const fileName = `${familyId}-${timestamp}.jpg`;
+    const scale = 4;
 
-    const token = this.auth.getToken();
-    const headers = new HttpHeaders().set('x-access-token', token || '');
+    let url = this.getCameraUrl(cam).replace(
+      environment.cameraBaseUrl,
+      environment.cameraProxyPath,
+    );
+    if (url.endsWith('/frame')) url = url.replace('/frame', '/current/');
 
-    this.http
-      .post(
-        `${environment.apiUrl}/cameras/screenshot`,
-        {
-          camera_id: cam.camera_id,
-          family_id: familyId,
-          fileName: fileName,
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      const img = await createImageBitmap(blob);
+      const canvas = document.createElement('canvas');
+
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(
+        (resizedBlob) => {
+          if (!resizedBlob) return;
+
+          const timestamp = new Date().toISOString().replace(/[:T]/g, '-').split('.')[0];
+          const fileName = `${familyId}-${timestamp}.jpg`;
+          const formData = new FormData();
+          formData.append('image', resizedBlob, fileName);
+          formData.append('camera_id', cam.camera_id.toString());
+          formData.append('family_id', familyId.toString());
+
+          const token = this.auth.getToken();
+          const headers = new HttpHeaders().set('x-access-token', token || '');
+
+          this.http
+            .post(`${environment.apiUrl}/cameras/upload-screenshot`, formData, { headers })
+            .subscribe({
+              next: () => this.showMessage(`Capture x${scale} sauvegardée !`, 'success'),
+              error: () => this.showMessage('Erreur sauvegarde', 'error'),
+            });
         },
-        { headers },
-      )
-      .subscribe(() => {
-        this.showMessage('Capture sauvegardée !', 'success');
-      });
+        'image/jpeg',
+        0.9,
+      );
+    } catch (err) {
+      console.error(err);
+      this.showMessage('Échec de la capture', 'error');
+    }
+  }
+
+  getSafeCameraUrl(cam: Camera): SafeResourceUrl {
+    const url = this.getCameraUrl(cam);
+    if (!url) return '';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+  getCameraUrl(cam: Camera): string {
+    let url = cam.lien_http;
+    if (!url && cam.adr_ip) url = `http://${cam.adr_ip}:8765/picture/${cam.camera_id}/frame`;
+    return url || '';
   }
 
   handleImageError(cam: Camera, event: any) {
-    if (event.target.src.includes('exemple_cam.png')) {
-      console.warn(`Image de secours introuvable à la racine.`);
-      return;
-    }
-
-    const newSet = new Set(this.failedCameraIds());
-    newSet.add(cam.camera_id);
-    this.failedCameraIds.set(newSet);
-
-    event.target.src = '/exemple_cam.png';
-  }
-
-  getCameraUrl(cam: Camera): string {
-    if (this.failedCameraIds().has(cam.camera_id)) {
-      return '/exemple_cam.png';
-    }
-
-    let url = cam.lien_http;
-    if (!url && cam.adr_ip) {
-      url = `http://${cam.adr_ip}:8765/picture/${cam.camera_id}/frame`;
-    }
-
-    if (!url) return '/exemple_cam.png';
-
-    const sep = url.includes('?') ? '&' : '?';
-    return `${url}${sep}t=${this.currentTimestamp()}`;
+    console.error(
+      `Erreur de chargement pour la caméra ${cam.camera_name} à l'URL:`,
+      event.target.src,
+    );
   }
 
   toggleFullscreen(id: number) {

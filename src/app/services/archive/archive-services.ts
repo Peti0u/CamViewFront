@@ -32,7 +32,6 @@ export class ArchiveServices {
     return this._HTTP.get<ArchiveModel[]>(ARCHIVE_API + 'videos', this.getHeaders());
   }
 
-  // Nouvelles méthodes Explorer
   ListFiles(path: string = ''): Observable<any[]> {
     return this._HTTP.get<any[]>(
       `${environment.apiUrl}/family/storage/list?path=${path}`,

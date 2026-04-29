@@ -16,6 +16,15 @@
   box-sizing: border-box;
   overflow-y: auto;
 
+  .camera-video-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    object-fit: cover;
+    background: black;
+  }
+
   .camera-card {
     background-color: var(--accent-color);
     border-radius: 2vh;
@@ -58,6 +67,7 @@
     .video-wrapper {
       width: 100%;
       height: 100%;
+      overflow: hidden;
       position: relative;
 
       img {
