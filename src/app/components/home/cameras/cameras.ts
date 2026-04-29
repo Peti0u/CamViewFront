@@ -184,11 +184,19 @@ export class Cameras implements OnInit, OnDestroy {
   }
 
   getCameraUrl(cam: Camera): string {
-    if (!cam.lien_http || this.failedCameraIds().has(cam.camera_id)) {
+    if (this.failedCameraIds().has(cam.camera_id)) {
       return '/exemple_cam.png';
     }
-    const sep = cam.lien_http.includes('?') ? '&' : '?';
-    return `${cam.lien_http}${sep}t=${this.currentTimestamp()}`;
+
+    let url = cam.lien_http;
+    if (!url && cam.adr_ip) {
+      url = `http://${cam.adr_ip}:8765/picture/${cam.camera_id}/frame`;
+    }
+
+    if (!url) return '/exemple_cam.png';
+
+    const sep = url.includes('?') ? '&' : '?';
+    return `${url}${sep}t=${this.currentTimestamp()}`;
   }
 
   toggleFullscreen(id: number) {
