@@ -29,6 +29,7 @@
 
 .section_login input {
   margin: 0 auto;
+  width: 100%;
   text-align: left;
   border: none;
   border-top: 1px solid #ededed;
@@ -40,7 +41,7 @@
   font-size: 15px;
   color: #ededed;
   padding: 5px;
-  padding-left: 10px;
+  // padding-left: 10px;
 }
 
 .section_login ::placeholder {

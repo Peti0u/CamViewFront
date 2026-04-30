@@ -27,11 +27,10 @@
 }
 
 .section_signup input {
-  margin: 0 auto;
+  width: 100%;
   text-align: left;
   border: none;
   border-top: 1px solid #ededed;
-  margin: 10px;
   background-color: #ededed40;
   border-radius: 15px;
   font-family: Poppins;
@@ -39,7 +38,10 @@
   font-size: 15px;
   color: #ededed;
   padding: 5px;
-  padding-left: 10px;
+  // padding-left: 10px;
+  &:last-child {
+    width: fit-content;
+  }
 }
 
 .section_signup ::placeholder {

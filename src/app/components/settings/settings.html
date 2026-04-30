@@ -1,1 +1,485 @@
-<p>settings works!</p>
+<section class="settings_page">
+  <div class="trans_bloc settings_card">
+    <h1>Paramètres</h1>
+
+    <nav class="settings_toolbar">
+      <div class="trans_bloc search_box">
+        <svg viewBox="0 0 24 24" class="search_svg" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path
+            d="M20 20L16.5 16.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+
+        <input type="text" placeholder="" [value]="searchValue" (input)="onSearch($event)" />
+      </div>
+
+      <div class="toolbar_buttons">
+        <button
+          type="button"
+          class="icon_button"
+          title="Filtrer"
+          [class.active_button]="onlyImportant"
+          (click)="toggleImportantFilter()"
+        >
+          <svg viewBox="0 0 24 24" class="toolbar_svg" aria-hidden="true">
+            <path
+              d="M3 5H21L14 13V20L10 18V13L3 5Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="icon_button"
+          title="Changer affichage"
+          [class.active_button]="compactView"
+          (click)="toggleCompactView()"
+        >
+          <svg viewBox="0 0 24 24" class="toolbar_svg" aria-hidden="true">
+            <rect
+              x="4"
+              y="4"
+              width="6"
+              height="6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="14"
+              y="4"
+              width="6"
+              height="6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="4"
+              y="14"
+              width="6"
+              height="6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="14"
+              y="14"
+              width="6"
+              height="6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            ></rect>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="feedback_box" *ngIf="feedbackMessage">
+      <p>{{ feedbackMessage }}</p>
+    </div>
+
+    <div class="settings_list" [class.compact_list]="compactView" *ngIf="openedSetting === null">
+      <div
+        *ngFor="let setting of displayedSettings; trackBy: trackBySettingId"
+        class="trans_bloc setting_row"
+        [class.selected_row]="selectedSettingId === setting.id"
+        (click)="openSetting(setting)"
+      >
+        <div class="setting_identity">
+          <div class="setting_icon" [ngSwitch]="setting.key">
+            <svg *ngSwitchCase="'quality'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14 6L18 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M13 7L17 11L9 19H5V15L13 7Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+
+            <svg *ngSwitchCase="'notifications'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 4C9.2 4 7 6.2 7 9V12.5L5 16H19L17 12.5V9C17 6.2 14.8 4 12 4Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M10 19C10.4 20 11.1 20.5 12 20.5C12.9 20.5 13.6 20 14 19"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+
+            <svg *ngSwitchCase="'storage'" viewBox="0 0 24 24" aria-hidden="true">
+              <rect
+                x="5"
+                y="4"
+                width="14"
+                height="16"
+                rx="2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              ></rect>
+              <path d="M5 10H19" fill="none" stroke="currentColor" stroke-width="2"></path>
+              <path d="M12 4V20" fill="none" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+
+            <svg *ngSwitchCase="'backup'" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M8 18H17C19.8 18 22 15.8 22 13C22 10.5 20.2 8.4 17.8 8.1C17.1 5.7 14.8 4 12.2 4C9.1 4 6.5 6.4 6.1 9.4C3.8 9.8 2 11.8 2 14.2C2 16.9 4.1 19 6.8 19H8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+
+            <svg *ngSwitchDefault viewBox="0 0 24 24" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="8"
+                r="3.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              ></circle>
+              <path
+                d="M5 20C5.5 16.8 8.1 15 12 15C15.9 15 18.5 16.8 19 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </div>
+
+          <p class="setting_title_text">{{ setting.title }}</p>
+        </div>
+
+        <button
+          type="button"
+          class="setting_arrow_button"
+          title="Ouvrir"
+          (click)="openSetting(setting); $event.stopPropagation()"
+        >
+          <svg viewBox="0 0 24 24" class="arrow_svg" aria-hidden="true">
+            <path
+              d="M9 6L15 12L9 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="empty_state" *ngIf="displayedSettings.length === 0">
+        <p>Aucun paramètre trouvé.</p>
+      </div>
+    </div>
+
+    <div class="trans_bloc detail_panel" *ngIf="openedSetting !== null">
+      <div class="detail_header">
+        <button type="button" class="back_button" (click)="closeSettingPanel()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M15 6L9 12L15 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+        <h2>{{ getOpenedSettingTitle() }}</h2>
+      </div>
+
+      <div class="detail_scroll_area">
+        <div class="detail_content" [ngSwitch]="openedSetting">
+          <div *ngSwitchCase="'quality'" class="detail_form">
+            <div class="field_row">
+              <label>Résolution</label>
+              <select [(ngModel)]="qualitySettings.resolution">
+                <option>480p</option>
+                <option>720p</option>
+                <option>1080p</option>
+              </select>
+            </div>
+
+            <div class="field_row">
+              <label>FPS</label>
+              <select [(ngModel)]="qualitySettings.fps">
+                <option [ngValue]="15">15</option>
+                <option [ngValue]="25">25</option>
+                <option [ngValue]="30">30</option>
+              </select>
+            </div>
+
+            <div class="field_row">
+              <label>Qualité du flux</label>
+              <select [(ngModel)]="qualitySettings.streamQuality">
+                <option>Basse</option>
+                <option>Moyenne</option>
+                <option>Élevée</option>
+              </select>
+            </div>
+
+            <div class="switch_row">
+              <label>Mode adaptatif</label>
+              <input type="checkbox" [(ngModel)]="qualitySettings.adaptiveMode" />
+            </div>
+
+            <div class="field_row">
+              <label>Qualité snapshot</label>
+              <select [(ngModel)]="qualitySettings.snapshotQuality">
+                <option>Basse</option>
+                <option>Moyenne</option>
+                <option>Haute</option>
+              </select>
+            </div>
+
+            <div class="field_row">
+              <label>Qualité enregistrement</label>
+              <select [(ngModel)]="qualitySettings.recordingQuality">
+                <option>Basse</option>
+                <option>Moyenne</option>
+                <option>Haute</option>
+              </select>
+            </div>
+
+            <div class="action_buttons">
+              <button type="button" class="primary_action" (click)="saveQualitySettings()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'notifications'" class="detail_form">
+            <div class="switch_row">
+              <label>Activer les notifications</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.enabled" />
+            </div>
+
+            <div class="switch_row">
+              <label>Détection de mouvement</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.movement" />
+            </div>
+
+            <div class="switch_row">
+              <label>Caméra déconnectée</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.disconnect" />
+            </div>
+
+            <div class="switch_row">
+              <label>Erreurs techniques</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.technicalErrors" />
+            </div>
+
+            <div class="switch_row">
+              <label>Fin d’enregistrement</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.recordingDone" />
+            </div>
+
+            <div class="switch_row">
+              <label>Snapshot créé</label>
+              <input type="checkbox" [(ngModel)]="notificationSettings.snapshotDone" />
+            </div>
+
+            <div class="field_row">
+              <label>Canal</label>
+              <select [(ngModel)]="notificationSettings.channel">
+                <option>In-app</option>
+                <option>Email</option>
+                <option>Push</option>
+              </select>
+            </div>
+
+            <div class="field_row">
+              <label>Fréquence</label>
+              <select [(ngModel)]="notificationSettings.frequency">
+                <option>Immédiat</option>
+                <option>Résumé horaire</option>
+                <option>Silencieux</option>
+              </select>
+            </div>
+
+            <div class="action_buttons">
+              <button type="button" class="secondary_action" (click)="testNotification()">
+                Tester
+              </button>
+              <button type="button" class="secondary_action" (click)="markAllNotificationsRead()">
+                Tout marquer lu
+              </button>
+              <button type="button" class="secondary_action" (click)="openNotificationsPage()">
+                Ouvrir la page
+              </button>
+              <button type="button" class="primary_action" (click)="saveNotificationSettings()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'storage'" class="detail_form">
+            <div class="info_box">
+              <p>
+                Espace utilisé : <strong>{{ storageSettings.usedSpace }}</strong>
+              </p>
+              <p>
+                Espace restant : <strong>{{ storageSettings.remainingSpace }}</strong>
+              </p>
+            </div>
+
+            <div class="field_row">
+              <label>Conservation des archives (jours)</label>
+              <input type="number" [(ngModel)]="storageSettings.retentionDays" />
+            </div>
+
+            <div class="switch_row">
+              <label>Suppression automatique</label>
+              <input type="checkbox" [(ngModel)]="storageSettings.autoDelete" />
+            </div>
+
+            <div class="field_row">
+              <label>Taille max enregistrement (Mo)</label>
+              <input type="number" [(ngModel)]="storageSettings.maxRecordingSize" />
+            </div>
+
+            <div class="field_row">
+              <label>Nombre max de snapshots</label>
+              <input type="number" [(ngModel)]="storageSettings.maxSnapshots" />
+            </div>
+
+            <div class="action_buttons">
+              <button type="button" class="secondary_action" (click)="openArchivesPage()">
+                Accéder aux archives
+              </button>
+              <button type="button" class="primary_action" (click)="saveStorageSettings()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'backup'" class="detail_form">
+            <div class="switch_row">
+              <label>Sauvegarde automatique</label>
+              <input type="checkbox" [(ngModel)]="backupSettings.enabled" />
+            </div>
+
+            <div class="field_row">
+              <label>Fréquence</label>
+              <select [(ngModel)]="backupSettings.frequency">
+                <option>Quotidienne</option>
+                <option>Hebdomadaire</option>
+                <option>Mensuelle</option>
+              </select>
+            </div>
+
+            <div class="field_row">
+              <label>Destination</label>
+              <select [(ngModel)]="backupSettings.destination">
+                <option>Local</option>
+                <option>Cloud</option>
+                <option>Disque externe</option>
+              </select>
+            </div>
+
+            <div class="switch_row">
+              <label>Inclure les images</label>
+              <input type="checkbox" [(ngModel)]="backupSettings.includeImages" />
+            </div>
+
+            <div class="switch_row">
+              <label>Inclure les vidéos</label>
+              <input type="checkbox" [(ngModel)]="backupSettings.includeVideos" />
+            </div>
+
+            <div class="info_box">
+              <p>
+                Dernière sauvegarde : <strong>{{ backupSettings.lastBackup }}</strong>
+              </p>
+            </div>
+
+            <div class="import_row">
+              <label>Importer une sauvegarde</label>
+              <input type="file" (change)="onImportBackup($event)" />
+            </div>
+
+            <div class="action_buttons">
+              <button type="button" class="secondary_action" (click)="exportArchives()">
+                Exporter
+              </button>
+              <button type="button" class="secondary_action" (click)="launchBackupNow()">
+                Sauvegarder maintenant
+              </button>
+              <button type="button" class="primary_action" (click)="saveBackupSettings()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+
+          <div *ngSwitchCase="'account'" class="detail_form">
+            <div class="field_row">
+              <label>Nom d’utilisateur</label>
+              <input type="text" [(ngModel)]="accountSettings.username" />
+            </div>
+
+            <div class="field_row">
+              <label>Email</label>
+              <input type="email" [(ngModel)]="accountSettings.email" />
+            </div>
+
+            <div class="field_row">
+              <label>Mot de passe actuel</label>
+              <input type="password" [(ngModel)]="accountSettings.currentPassword" />
+            </div>
+
+            <div class="field_row">
+              <label>Nouveau mot de passe</label>
+              <input type="password" [(ngModel)]="accountSettings.newPassword" />
+            </div>
+
+            <div class="field_row">
+              <label>Confirmation mot de passe</label>
+              <input type="password" [(ngModel)]="accountSettings.confirmPassword" />
+            </div>
+
+            <div class="action_buttons">
+              <button type="button" class="secondary_action" (click)="logout()">Déconnexion</button>
+              <button type="button" class="primary_action" (click)="saveAccountSettings()">
+                Enregistrer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
