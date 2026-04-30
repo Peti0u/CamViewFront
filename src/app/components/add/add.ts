@@ -12,7 +12,7 @@ import { API_ENDPOINTS } from '../../config/constants';
   styleUrl: './add.scss',
 })
 export class Add implements OnInit {
-  connectedUserFamilyId: number = 1;
+  connectedUserFamilyId: number = 0;
 
   newCamera = {
     family_id: 0,
@@ -22,10 +22,19 @@ export class Add implements OnInit {
     notif_state: true,
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    this.newCamera.family_id = this.connectedUserFamilyId;
+    // Récupération de l'utilisateur depuis le stockage de session
+    const userData = sessionStorage.getItem('user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      this.connectedUserFamilyId = user.family_id;
+      this.newCamera.family_id = user.family_id;
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -34,7 +43,6 @@ export class Add implements OnInit {
     }
 
     const dataToSend = {
-      family_id: this.newCamera.family_id,
       camera_name: this.newCamera.camera_name,
       adr_ip: this.newCamera.adr_ip,
       lien_http: this.newCamera.lien_http,

@@ -20,6 +20,7 @@ export class AuthService {
       tap((response) => {
         if (response.accessToken) {
           this.saveToken(response.accessToken);
+          sessionStorage.setItem('user', JSON.stringify(response));
         }
       }),
     );
@@ -43,6 +44,7 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
 }
